@@ -7,7 +7,7 @@ const style = {
     }
 }
 
-class Post_Content extends Component {
+class PostContent extends Component {
   render() {
     return (
         <div className="content" style ={style.content}>
@@ -17,4 +17,4 @@ class Post_Content extends Component {
   }
 }
 
-export default Post_Content;
+export default PostContent;
