@@ -24,15 +24,15 @@ class NavBar extends Component {
   render() {
     return (
         <nav>
-            <div class="nav-wrapper" style={style.navBar}>
-              <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <div className="nav-wrapper" style={style.navBar}>
+              <ul id="nav-mobile" className="right hide-on-med-and-down">
                   <li><a href="#">Home</a></li>
                   <li><a href="#">Profile</a></li>
                   <li><a href="#">Messages</a></li>
               </ul>
-              <div class="input-field">
+              <div className="input-field">
                 <input type="text" id="name"/>
-                <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+                <label className="label-icon" htmlFor="search"><i className="material-icons">search</i></label>
               </div>
             </div>
         </nav>

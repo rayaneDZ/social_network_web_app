@@ -1,13 +1,17 @@
 import React, { Component } from 'react';
+import Post_Heading from './Post_Heading.jsx';
+import Post_Content from './Post_Content.jsx';
+import Post_Reactions from './Post_Reactions.jsx';
+
 
 class Post extends Component {
   render() {
     return (
-      <div>
-        <div className="metadata">
-            
-        </div>
-      </div>
+        <React.Fragment>
+            <Post_Heading/>
+            <Post_Content/>
+            <Post_Reactions/>
+        </React.Fragment>
     )
   }
 }
