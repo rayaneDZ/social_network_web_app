@@ -1,20 +1,13 @@
-form{
-    margin: auto;
-    width: 400px;
-    
-    border-radius: 50%;
+#navbarForm{
+    width: 300px;
 }
 
- .input-field{
+#navbarForm .input-field{
     padding-top: 7px;
     padding-bottom: 7px;
-    border-radius: 50%;
-    width: 400px;
 }
 
- form #search{
+#navbarForm #search{
     height: 50px;
     margin : 0;
-    
-    border-radius: 15px;
 }

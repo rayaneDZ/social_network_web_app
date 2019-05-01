@@ -7,34 +7,58 @@ const style = {
         width : 500,
         marginTop : 50,
         marginLeft : 'auto',
-        marginRight: 'auto'
+        marginRight: 'auto',
+        backgroundColor : 'white'
     },
     tabs : {
         marginBottom : 20
+    },
+    outerdiv : {
+        position: 'absolute',
+        top: 0,
+        bottom: 0,
+        right: 0,
+        left: 0,
+        width: '100%',
+        height: '50vh',
+        backgroundColor : 'tomato',
+        transform: 'skewY(-6deg)',
+        transformOrigin: 'top left',
+
+        // height : '70vh',
+        // borderBottomLeftRadius: '50% 20%',
+        // borderBottomRightRadius: '50% 20%',
+        // backgroundColor : 'tomato',
+        paddingTop : 50
     }
 };
 
 class LogSign extends Component {
   render() {
     return (
-      <div className="card-panel"style = {style.card}>
-        <div className="container">
-                <div className="row">
-                    <div className="col s12" style = {style.tabs}>
-                        <ul className="tabs">
-                        <li className="tab col s6"><a href="#login" className="active">Log In</a></li>
-                        <li className="tab col s6"><a href="#signup">Sign In</a></li>
-                        </ul>
-                    </div>
-                    <div id="login" className="col s12">
-                        <LogIn/>
-                    </div>
-                    <div id="signup" className="col s12">
-                        <SignUp/>
+    <React.Fragment >
+        
+        <div style = {style.outerdiv}></div>
+
+        <div className="card-panel card"style = {style.card}>
+            <div className="container">
+                    <div className="row">
+                        <div className="col s12" style = {style.tabs}>
+                            <ul className="tabs">
+                            <li className="tab col s6"><a href="#login" className="active">Log In</a></li>
+                            <li className="tab col s6"><a href="#signup">Sign In</a></li>
+                            </ul>
+                        </div>
+                        <div id="login" className="col s12">
+                            <LogIn/>
+                        </div>
+                        <div id="signup" className="col s12">
+                            <SignUp/>
+                        </div>
                     </div>
                 </div>
-            </div>
-      </div>
+        </div>
+    </React.Fragment>
     )
   }
 }

@@ -23,7 +23,6 @@ const style = {
 class NavBar extends Component {
   render() {
     return (
-      
         <nav>
             <div className="nav-wrapper" style={style.navBar}>
               <ul id="nav-mobile" className="right hide-on-med-and-down">
@@ -31,17 +30,16 @@ class NavBar extends Component {
                   <li><a href="/profile">Profile</a></li>
                   <li><a href="/messages">Messages</a></li>
               </ul>
-              <form>
-                      <div className="input-field">
-                          <input id="search" type="search" name="search"/>
-                          <label className="label-icon" htmlFor="search"><i className="material-icons">search</i></label>
-                          <i className="material-icons">close</i>
-                      </div>
-                  </form>
-              
-                  <ul id="nav-mobile" className="right hide-on-med-and-down" style={{marginLeft : 20}}>
-                      <li><a href="/">Log Out</a></li>
-                  </ul>
+              <form id="navbarForm">
+                  <div className="input-field">
+                      <input id="search" type="search" name="search"/>
+                      <label className="label-icon" htmlFor="search"><i className="material-icons">search</i></label>
+                      <i className="material-icons">close</i>
+                  </div>
+              </form>
+              <ul id="nav-mobile" className="right hide-on-med-and-down">
+                  <li><a href="/">Log Out</a></li>
+              </ul>
             </div>
         </nav>
       

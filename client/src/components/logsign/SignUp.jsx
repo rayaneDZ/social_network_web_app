@@ -1,4 +1,13 @@
 import React, { Component } from 'react';
+import './IFCC.css';
+
+
+const style = {
+  btnColor : {
+      backgroundColor : 'tomato',
+      color : 'white'
+  }
+}
 
 class SignUp extends Component {
   render() {
@@ -18,7 +27,7 @@ class SignUp extends Component {
                       <label className="active" htmlFor="password">password</label>
                       <input type="password" id="signup_password" className="validate"/>
                   </div>
-                  <button className="btn">Sign Up</button>
+                  <button className="btn-flat" style = {style.btnColor}>Sign Up</button>
                 </form>
             </React.Fragment>
       </div>
