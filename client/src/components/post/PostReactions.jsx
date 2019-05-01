@@ -42,7 +42,7 @@ class PostReactions extends Component {
         </div>
         {
           this.state.comment ? 
-            <div class="input-field" style={style.inputField}>
+            <div className="input-field" style={style.inputField}>
               <input type="text" id="comment" placeholder="comment" style={style.commentInput}/>
             </div>
           : 

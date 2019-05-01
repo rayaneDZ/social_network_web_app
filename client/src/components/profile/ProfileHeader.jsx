@@ -1,4 +1,6 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+
+const href = '#';
 
 const style = {
     profilePic : {
@@ -32,11 +34,11 @@ class ProfileHeader extends Component {
                 <h3 style={{marginTop : 0}}>Username</h3>
                 <h6>email</h6>
             </div>
-            <a className="dropdown-button" data-activates="dropdown1"><h4 style={{marginTop : 0}}>&#x22EE;</h4></a>
+            <a href = {href} className="dropdown-button" data-activates="dropdown1"><h4 style={{marginTop : 0}}>&#x22EE;</h4></a>
             <ul id='dropdown1' className='dropdown-content'>
-                <li><a href="#!" style={style.flex}><i className="material-icons" style={style.icon}>block</i>Block User</a></li>
-                <li><a href="#!" style={style.flex}><i className="material-icons" style={style.icon}>priority_high</i>Report Post</a></li>
-                <li><a href="#!" style={style.flex}><i className="material-icons" style={style.icon}>remove</i>Hide Post</a></li>
+                <li><a href = {href} style={style.flex}><i className="material-icons" style={style.icon}>block</i>Block User</a></li>
+                <li><a href = {href} style={style.flex}><i className="material-icons" style={style.icon}>priority_high</i>Report Post</a></li>
+                <li><a href = {href} style={style.flex}><i className="material-icons" style={style.icon}>remove</i>Hide Post</a></li>
             </ul>
           </div>
       </div>

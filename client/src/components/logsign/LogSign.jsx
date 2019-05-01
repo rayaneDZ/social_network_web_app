@@ -1,4 +1,4 @@
-import React, { Component } from './node_modules/react';
+import React, { Component } from 'react';
 import LogIn from './LogIn.jsx';
 import SignUp from './SignUp.jsx';
 
@@ -14,7 +14,7 @@ const style = {
     }
 };
 
-export default class LogSign extends Component {
+class LogSign extends Component {
   render() {
     return (
       <div className="card-panel"style = {style.card}>
@@ -38,3 +38,5 @@ export default class LogSign extends Component {
     )
   }
 }
+
+export default LogSign;

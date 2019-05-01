@@ -1,4 +1,4 @@
-import React, { Component } from './node_modules/react';
+import React, { Component } from 'react';
 
 class LogIn extends Component {
     render() {
@@ -13,7 +13,7 @@ class LogIn extends Component {
                         <label className="active" htmlFor="password">password</label>
                         <input type="password" id="password" className="validate"/>
                     </div>
-                    <button class="btn">Log In</button>
+                    <button className="btn">Log In</button>
                 </form>
             </React.Fragment>
         );

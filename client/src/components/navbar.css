@@ -1,0 +1,20 @@
+form{
+    margin: auto;
+    width: 400px;
+    
+    border-radius: 50%;
+}
+
+ .input-field{
+    padding-top: 7px;
+    padding-bottom: 7px;
+    border-radius: 50%;
+    width: 400px;
+}
+
+ form #search{
+    height: 50px;
+    margin : 0;
+    
+    border-radius: 15px;
+}

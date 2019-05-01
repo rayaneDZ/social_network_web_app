@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './navbar.css';
 
 const style = {
   navBar : {
@@ -13,34 +14,37 @@ const style = {
     alignItems : 'center'
   },
   input : {
-    margin : 0,
-    padding: 50,
-    paddingTop:0,
-    paddingBottom : 0,
+    backgroundColor : 'white',
+    color : 'black',
+    padding: 10,
   }
 }
 
 class NavBar extends Component {
   render() {
     return (
+      
         <nav>
             <div className="nav-wrapper" style={style.navBar}>
               <ul id="nav-mobile" className="right hide-on-med-and-down">
-                  <li><a href="#">Home</a></li>
-                  <li><a href="#">Profile</a></li>
-                  <li><a href="#">Messages</a></li>
+                  <li><a href="/home">Home</a></li>
+                  <li><a href="/profile">Profile</a></li>
+                  <li><a href="/messages">Messages</a></li>
               </ul>
-              <div style={{display : 'flex'}}>
-                  <div className="input-field">
-                    <input type="text" id="name"/>
-                    <label className="label-icon" htmlFor="search"><i className="material-icons">search</i></label>
-                  </div>
-                  <ul id="nav-mobile" className="right hide-on-med-and-down" style={{marginLeft : 50}}>
-                      <li><a href="#">Log Out</a></li>
+              <form>
+                      <div className="input-field">
+                          <input id="search" type="search" name="search"/>
+                          <label className="label-icon" htmlFor="search"><i className="material-icons">search</i></label>
+                          <i className="material-icons">close</i>
+                      </div>
+                  </form>
+              
+                  <ul id="nav-mobile" className="right hide-on-med-and-down" style={{marginLeft : 20}}>
+                      <li><a href="/">Log Out</a></li>
                   </ul>
-              </div>
             </div>
         </nav>
+      
     )
   }
 }

@@ -1,4 +1,4 @@
-import React, { Component } from './node_modules/react';
+import React, { Component } from 'react';
 
 class SignUp extends Component {
   render() {
@@ -6,19 +6,19 @@ class SignUp extends Component {
       <div>
         <React.Fragment>
                 <form>
-                  <div class="input-field">
-                    <input type="email" id="email" class="validate"/>
-                    <label class="active" for="email">Email</label>
+                  <div className="input-field">
+                    <input type="email" id="email" className="validate"/>
+                    <label className="active" htmlFor="email">Email</label>
                   </div>
                   <div className="input-field">
                       <label className="active" htmlFor="Username">Username</label>
-                      <input type="text" id="username"/>
+                      <input type="text" id="signup_username"/>
                   </div>
                   <div className="input-field">
                       <label className="active" htmlFor="password">password</label>
-                      <input type="password" id="password" className="validate"/>
+                      <input type="password" id="signup_password" className="validate"/>
                   </div>
-                  <button class="btn">Sign Up</button>
+                  <button className="btn">Sign Up</button>
                 </form>
             </React.Fragment>
       </div>

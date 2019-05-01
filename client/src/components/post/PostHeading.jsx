@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 
+
+const href = '#'
+
 const style = {
     flex : {
         display : 'flex'
@@ -33,11 +36,11 @@ class PostHeading extends Component {
                     <div className="when">timestamp</div>
                 </div>
             </div>
-            <a className="dropdown-button" data-activates="dropdown"><h4>&#x22EE;</h4></a>
+            <a href = {href} className="dropdown-button" data-activates="dropdown"><h4>&#x22EE;</h4></a>
             <ul id='dropdown' className='dropdown-content'>
-                <li><a href="#!" style={style.flex}><i className="material-icons" style={style.icon}>block</i>Block User</a></li>
-                <li><a href="#!" style={style.flex}><i className="material-icons" style={style.icon}>priority_high</i>Report Post</a></li>
-                <li><a href="#!" style={style.flex}><i className="material-icons" style={style.icon}>remove</i>Hide Post</a></li>
+                <li><a href = {href} style={style.flex}><i className="material-icons" style={style.icon}>block</i>Block User</a></li>
+                <li><a href = {href} style={style.flex}><i className="material-icons" style={style.icon}>priority_high</i>Report Post</a></li>
+                <li><a href = {href} style={style.flex}><i className="material-icons" style={style.icon}>remove</i>Hide Post</a></li>
             </ul>
         </div>
     )
