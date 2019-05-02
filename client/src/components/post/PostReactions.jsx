@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 
 const style ={
     reacts_container : {
@@ -14,8 +14,13 @@ const style ={
     },
     commentInput : {
       margin : 0,
+      marginTop : 10,
       padding: 5,
-      height : 25
+      height : 25,
+      borderStyle : 'none',
+      border : '1px solid black',
+      borderRadius : '5px',
+      width : 'calc(100% - 20px)'
     }
 }
 
@@ -42,9 +47,9 @@ class PostReactions extends Component {
         </div>
         {
           this.state.comment ? 
-            <div className="input-field" style={style.inputField}>
+            
               <input type="text" id="comment" placeholder="comment" style={style.commentInput}/>
-            </div>
+            
           : 
             <div></div>
         }

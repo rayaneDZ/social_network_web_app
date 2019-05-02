@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 
 const style = {
     comment : {
-        
+        marginTop : 10
     },
     username : {
         fontWeight : 'bold',
@@ -10,6 +10,10 @@ const style = {
     },
     userdata : {
         display : 'flex'
+    },
+    commentContent : {
+        margin : 0,
+        marginLeft : 20
     }
 }
 
@@ -21,7 +25,7 @@ class PostComments extends Component {
                 <h6 style={style.username}>Username</h6>
                 <h6>timestamp</h6>
             </div>
-            <p style={{margin : 0, marginLeft: 20}}>
+            <p style={style.commentContent}>
                 This is a comment example
             </p>
         </div>

@@ -20,9 +20,9 @@ class NavBar extends Component {
         <nav>
             <div className="nav-wrapper" style={style.navBar}>
               <ul id="nav-mobile" className="right hide-on-med-and-down" style = {style.flex}>
-                  <li><a href="/home"><i class="material-icons">home</i></a></li>
-                  <li><a href="/profile"><i class="material-icons">person</i></a></li>
-                  <li><a href="/messages"><i class="material-icons">message</i></a></li>
+                  <li><a href="/home"><i className="material-icons">home</i></a></li>
+                  <li><a href="/profile"><i className="material-icons">person</i></a></li>
+                  <li><a href="/messages"><i className="material-icons">message</i></a></li>
                   <li><SearchBar /></li>
               </ul>
               <ul id="nav-mobile" className="right hide-on-med-and-down">
