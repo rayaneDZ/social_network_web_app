@@ -3,7 +3,7 @@ import './IFCC.css';
 
 const style = {
     btnColor : {
-        backgroundColor : 'tomato',
+        backgroundColor : '#673ab7',
         color : 'white'
     }
 }

@@ -3,14 +3,14 @@ import React, { Component } from 'react'
 const style ={
     reacts_container : {
         display : 'flex',
-        marginBottom : 10
+        marginBottom : 0
     },
     react_button : {
         borderStyle : 'none',
         width: '100%'
     },
     inputField :{
-      margin : 0
+      marginBottom : 14.5
     },
     commentInput : {
       margin : 0,

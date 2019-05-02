@@ -5,7 +5,7 @@ import Post from '../post/Post.jsx';
 
 const style = {
     container : {
-        marginTop : 50,
+        marginTop : 20,
         marginRight : 'auto',
         marginLeft : 'auto',
         padding : 30

@@ -21,14 +21,9 @@ const style = {
         left: 0,
         width: '100%',
         height: '50vh',
-        backgroundColor : 'tomato',
-        transform: 'skewY(-6deg)',
-        transformOrigin: 'top left',
-
-        // height : '70vh',
-        // borderBottomLeftRadius: '50% 20%',
-        // borderBottomRightRadius: '50% 20%',
-        // backgroundColor : 'tomato',
+        backgroundColor : '#673ab7',
+        transform: 'skewY(+6deg)',
+        transformOrigin: 'top right',
         paddingTop : 50
     }
 };

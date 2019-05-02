@@ -3,13 +3,13 @@ import Post from '../post/Post.jsx';
 
 const style = {
     container : {
-        marginTop : 50,
+        marginTop : 20,
         marginRight : 'auto',
         marginLeft : 'auto',
         padding : 30
     },
     hr : {
-      marginTop : 50,
+      marginTop : 20,
       marginBottom : 20
     }
 }
@@ -17,13 +17,14 @@ const style = {
 class Content extends Component {
   render() {
     return (
-      <div className="container card " style = {style.container}>
-        <Post />
-        <hr style={style.hr}/>
-        <Post />
-        <hr style={style.hr}/>
-        <Post />
-
+      <div className="container">
+        <div className=" card " style = {style.container}>
+          <Post />
+          <hr style={style.hr}/>
+          <Post />
+          <hr style={style.hr}/>
+          <Post />
+        </div>
       </div>
     )
   }
