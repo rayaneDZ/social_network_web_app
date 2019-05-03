@@ -41,7 +41,7 @@ class LogSign extends Component {
                         <div className="col s12" style = {style.tabs}>
                             <ul className="tabs">
                             <li className="tab col s6"><a href="#login" className="active">Log In</a></li>
-                            <li className="tab col s6"><a href="#signup">Sign In</a></li>
+                            <li className="tab col s6"><a href="#signup">Sign Up</a></li>
                             </ul>
                         </div>
                         <div id="login" className="col s12">
