@@ -9,31 +9,62 @@ const style = {
   },
   gender : {
     marginBottom : 20
+  },
+  wrongformat : {
+    fontSize : 12,
+    fontWeight : 'blod',
+    color : 'tomato',
+    display : 'none'
   }
 }
 
 class SignUp extends Component {
-  constructor(props){
-    super(props);
-    this.state = {}
-  }
-
   handleSignUp = () => {
     const email = document.getElementById('email').value;
     const username = document.getElementById('signup_username').value;
     const password = document.getElementById('signup_password').value;
     const gender = document.getElementById('gender').value;
-    axios.post(`http://localhost:5000/signup`, { 
-      'email' : email,
-      'username' : username,
-      'password' : password,
-      'gender' : gender,
-    }).then(res => {
-        console.log(res);
-        console.log(res.data);
-    })
+    if (this.validateSignUp(email, password, username)){
+      axios.post(`http://localhost:5000/signup`, { 
+        'email' : email,
+        'username' : username,
+        'password' : password,
+        'gender' : gender,
+      }).then(res => {
+          console.log(res);
+          console.log(res.data);
+      })
+    }
   }
-
+  validateEmail = (email) =>{
+    var re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@(([[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(String(email).toLowerCase());
+  }
+  validateSignUp = (email, password, username) => {
+    if(password.length < 6){
+      document.getElementById('password_span').style.display= "block";
+    }else{
+      document.getElementById('password_span').style.display= "none";
+    }
+    if(username.length < 4){
+      document.getElementById('username_span').style.display= "block";
+    }else{
+      document.getElementById('username_span').style.display= "none";
+    }
+    if(!this.validateEmail(email)) {
+      document.getElementById('email_span').style.display= "block";      
+    }else {
+      document.getElementById('email_span').style.display= "none";
+    }
+    if (password.length >= 6 && this.validateEmail(email)){
+      document.getElementById('username_span').style.display= "none";
+      document.getElementById('email_span').style.display= "none";
+      document.getElementById('password_span').style.display= "none";
+      return true;
+    }else{
+      return false;
+    }
+  }
   render() {
     return (
       <div>
@@ -41,19 +72,22 @@ class SignUp extends Component {
           <label className="active" htmlFor="email">Email</label>
           <input type="text" id="email" className="validate"/>
         </div>
+        <span style={style.wrongformat} id="email_span">*Enter a valid email</span>
         <div className="input-field">
             <label className="active" htmlFor="Username">Username</label>
             <input type="text" id="signup_username"/>
         </div>
+        <span style={style.wrongformat} id="username_span">*Username must be 4 characters or more</span>
         <div className="input-field">
             <label className="active" htmlFor="password">Password</label>
             <input type="password" id="signup_password" className="validate"/>
         </div>
+        <span style={style.wrongformat} id="password_span">*Password must be 6 characters or more</span>
         <div style = {style.gender}>
           <label>Gender</label>
           <select className="browser-default" id="gender">
-            <option value="male">Male</option>
-            <option value="female">Female</option>
+            <option value="M">Male</option>
+            <option value="F">Female</option>
           </select>              
         </div>
         <button className="btn-flat" style = {style.btnColor} onClick={this.handleSignUp}>Sign Up</button>
