@@ -15,6 +15,12 @@ const style = {
 }
 
 class NavBar extends Component {
+  logOut = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("username");
+    localStorage.removeItem("profile_picture_path");
+    window.location.replace('http://localhost:3000/');
+  }
   render() {
     return (
         <nav>
@@ -25,8 +31,8 @@ class NavBar extends Component {
                   <li><a href="/messages"><i className="material-icons">message</i></a></li>
                   <li><SearchBar /></li>
               </ul>
-              <ul id="nav-mobile" className="right hide-on-med-and-down">
-                  <li><a href="/">Log Out</a></li>
+              <ul id="nav-mobile" className="right hide-on-med-and-down" >
+                  <li onClick={this.logOut}><a href="/" style = {{width : 90}}>Log Out</a></li>
               </ul>
             </div>
         </nav>

@@ -15,6 +15,13 @@ const style = {
     fontWeight : 'blod',
     color : 'tomato',
     display : 'none'
+  },
+  signedUp : {
+    fontSize : 16,
+    fontWeight : 'blod',
+    color : '#009688',
+    display : 'none',
+    marginTop : 10
   }
 }
 
@@ -31,8 +38,18 @@ class SignUp extends Component {
         'password' : password,
         'gender' : gender,
       }).then(res => {
-          console.log(res);
-          console.log(res.data);
+          if(res.data.message === "email"){
+            document.getElementById('taken_email_span').style.display= "block";
+            document.getElementById('taken_username_span').style.display= "none";
+          }else if (res.data.message === "username"){
+            document.getElementById('taken_username_span').style.display= "block";
+            document.getElementById('taken_email_span').style.display= "none";
+          }else if (res.data.message === "success"){
+            document.getElementById('signed_up_span').style.display= "block";
+            document.getElementById('taken_username_span').style.display= "none";
+            document.getElementById('taken_email_span').style.display= "none";
+            window.location.reload();
+          }
       })
     }
   }
@@ -67,17 +84,19 @@ class SignUp extends Component {
   }
   render() {
     return (
-      <div>
+      <React.Fragment>
         <div className="input-field">
           <label className="active" htmlFor="email">Email</label>
           <input type="text" id="email" className="validate"/>
         </div>
         <span style={style.wrongformat} id="email_span">*Enter a valid email</span>
+        <span style={style.wrongformat} id="taken_email_span">*There's already an account associated with this email</span>
         <div className="input-field">
             <label className="active" htmlFor="Username">Username</label>
             <input type="text" id="signup_username"/>
         </div>
         <span style={style.wrongformat} id="username_span">*Username must be 4 characters or more</span>
+        <span style={style.wrongformat} id="taken_username_span">*Username taken</span>
         <div className="input-field">
             <label className="active" htmlFor="password">Password</label>
             <input type="password" id="signup_password" className="validate"/>
@@ -91,7 +110,8 @@ class SignUp extends Component {
           </select>              
         </div>
         <button className="btn-flat" style = {style.btnColor} onClick={this.handleSignUp}>Sign Up</button>
-      </div>
+        <span style={style.signedUp} id="signed_up_span">Signed Up &#10004;</span>        
+      </React.Fragment>
     )
   }
 }

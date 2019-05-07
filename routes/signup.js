@@ -1,28 +1,58 @@
 const express = require('express');
+const mongoose = require('mongoose');
+const User = require('../models/User.js');
+const bcrypt = require('bcrypt');
 const router = express.Router();
-const mysql = require('mysql');
-
-
 
 router.post('/', (req, res, next) => {
-    const db = mysql.createConnection({
-        host     : 'localhost',
-        user     : 'root',
-        password : 'rayane1998',
-        port     : "3306",
-        database : "social_network"
-      });
-    let sql = `INSERT INTO sn_user VALUES (1, '${req.body.email}', '${req.body.username}', '${req.body.password}', null, '${req.body.gender}', null, null, null, null, '2019-12-12', 'N')`;
-    console.log(req.body)
-    db.query(sql, (err, result) => {
-        if (err) throw err;
-        console.log(result[0]);
+    User.find({email : req.body.email})
+    .exec()
+    .then(user => {
+        if (user.length >= 1) {    
+            return res.status(200).json({
+                message : 'email'
+            });
+        }
+        checkUsername();
     })
-    
-    res.send('Signed Up')
-    console.log('got post request for sign up')
-    console.log(req.body.email);
-    next();
+    const checkUsername = () => {
+        User.find({username : req.body.username})
+        .exec()
+        .then(user => {
+            if (user.length >= 1) {
+                return res.status(200).json({
+                    message : 'username'
+                });
+            }
+            bcrypt.hash(req.body.password, process.env.SALT_ROUNDS, (err, hash) => {
+                if (err) {
+                    return res.status(500).json({
+                        error : err
+                    })
+                }
+                const user = new User({
+                    _id : new mongoose.Types.ObjectId(),
+                    email: req.body.email,
+                    hashed_password : hash,
+                    username: req.body.username,
+                    gender : req.body.gender
+                });
+                user.save()
+                .then(result => {
+                    console.log(result);
+                    res.status(201).json({
+                        message: 'success'
+                    });
+                })
+                .catch(err => {
+                    console.log(err);
+                    res.status(500).json({
+                        error: err
+                    });
+                });
+            })
+        })
+    }
 });
 
 module.exports = router;
