@@ -1,0 +1,13 @@
+textarea{
+    border: none;
+    resize : none;
+    height: 70px;
+    margin : 0;
+    background-color: white;
+}
+textarea:focus {
+    outline: none
+}
+#makepostcontainer{
+    padding: 20px;
+}

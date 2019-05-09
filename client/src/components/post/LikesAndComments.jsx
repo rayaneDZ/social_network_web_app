@@ -1,4 +1,5 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import '../css/likesandcomments.css';
 
 const style = {
     likesandcommentcontainer : {
@@ -20,7 +21,7 @@ const style = {
 class LikesAndComments extends Component {
   render() {
     return (
-      <div style={style.likesandcommentcontainer}>
+      <div style={style.likesandcommentcontainer} id="likesAndCommentsCount">
         <p style={style.margin}>0 Likes </p>
         <button style={style.button} onClick={this.props.handler}>0 Comments</button>
       </div>

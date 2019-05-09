@@ -1,0 +1,11 @@
+@media only screen and (max-width: 600px) {
+    #logsign {
+        padding : 0;
+        width : 100% ! important;
+        margin : 0 !important;
+        height: 100vh !important;
+    }
+    #outerdiv {
+        display : none;
+    }
+  }

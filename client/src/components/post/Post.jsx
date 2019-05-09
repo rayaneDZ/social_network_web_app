@@ -19,7 +19,7 @@ class Post extends Component {
   }
   render() {
     return (
-        <React.Fragment>
+        <div className = "card" style={{padding : 30, marginBottom: 30}}>
             <PostHeading/>
             <PostContent/>
             <LikesAndComments handler = {this.toggleComments}/>
@@ -33,7 +33,7 @@ class Post extends Component {
               :
                 <div style = {{display : 'none'}}></div>
             }
-        </React.Fragment>
+        </div>
     )
   }
 }

@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import LogIn from './LogIn.jsx';
 import SignUp from './SignUp.jsx';
+import {Animated} from "react-animated-css";
+import '../css/IFCC.css';
+import '../css/logsign.css';
 
 const style = {
     card : {
@@ -32,11 +35,10 @@ class LogSign extends Component {
   render() {
     return (
     <React.Fragment >
-        
-        <div style = {style.outerdiv}></div>
-
-        <div className="card-panel card"style = {style.card}>
-            <div className="container">
+        <div style = {style.outerdiv} id ="outerdiv"></div>
+        <Animated animationIn = "slideInLeft" animationOut = "slideInRight" isVisible={true}>
+            <div className="card-panel card" style = {style.card} id ="logsign">
+                <div className="container">
                     <div className="row">
                         <div className="col s12" style = {style.tabs}>
                             <ul className="tabs">
@@ -52,7 +54,8 @@ class LogSign extends Component {
                         </div>
                     </div>
                 </div>
-        </div>
+            </div>
+        </Animated>
     </React.Fragment>
     )
   }

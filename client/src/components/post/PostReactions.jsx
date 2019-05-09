@@ -42,7 +42,7 @@ class PostReactions extends Component {
         <div style = {style.reacts_container}>
           <button className="btn-flat waves-effect waves-light" style={style.react_button}><i className="material-icons">thumb_up</i></button>
           <button className="btn-flat waves-effect waves-light" style={style.react_button}><i className="material-icons">thumb_down</i></button>
-          <button className="btn-flat waves-effect waves-light" style={style.react_button}><i className="material-icons" onClick={this.toggleComment}>comment</i></button>
+          <button className="btn-flat waves-effect waves-light" style={style.react_button} onClick={this.toggleComment}><i className="material-icons">comment</i></button>
           <button className="btn-flat waves-effect waves-light" style={style.react_button}><i className="material-icons">share</i></button>
         </div>
         {

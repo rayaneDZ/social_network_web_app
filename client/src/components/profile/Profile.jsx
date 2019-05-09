@@ -7,12 +7,11 @@ const style = {
     container : {
         marginTop : 20,
         marginRight : 'auto',
-        marginLeft : 'auto',
-        padding : 30
+        marginLeft : 'auto'
     },
-    hr : {
-      marginTop : 50,
-      marginBottom : 20
+    profileContainer : {
+      height : '100%',
+      backgroundColor : '#673ab7'
     }
 }
 
@@ -20,19 +19,17 @@ const style = {
 class Profile extends Component {
   render() {
     return (
-      <React.Fragment>
+      <div style= {style.profileContainer}>
           <NavBar />
           <div className="container card " style = {style.container}>
             <ProfileHeader/>
           </div>
-          <div className="container card " style = {style.container}>
+          <div className=" container " style = {style.container}>
             <Post />
-            <hr style={style.hr}/>
             <Post />
-            <hr style={style.hr}/>
             <Post />
           </div>
-      </React.Fragment>
+      </div>
     )
   }
 }

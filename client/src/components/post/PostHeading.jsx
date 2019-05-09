@@ -16,7 +16,7 @@ const style = {
     },
     heading : {
         display : 'flex',
-        alignItems : 'center',
+        alignItems : 'flex-start',
         justifyContent : 'space-between'
     },
     icon : {

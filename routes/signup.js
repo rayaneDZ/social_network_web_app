@@ -8,8 +8,8 @@ router.post('/', (req, res, next) => {
     User.find({email : req.body.email})
     .exec()
     .then(user => {
-        if (user.length >= 1) {    
-            return res.status(200).json({
+        if (user.length >= 1) {
+            return res.status(409).json({
                 message : 'email'
             });
         }
@@ -20,12 +20,13 @@ router.post('/', (req, res, next) => {
         .exec()
         .then(user => {
             if (user.length >= 1) {
-                return res.status(200).json({
+                return res.status(409).json({
                     message : 'username'
                 });
             }
-            bcrypt.hash(req.body.password, process.env.SALT_ROUNDS, (err, hash) => {
+            bcrypt.hash(req.body.password, parseInt(process.env.SALT_ROUNDS), (err, hash) => {
                 if (err) {
+                    console.log('here', err)
                     return res.status(500).json({
                         error : err
                     })
@@ -53,6 +54,7 @@ router.post('/', (req, res, next) => {
             })
         })
     }
+    next();
 });
 
 module.exports = router;

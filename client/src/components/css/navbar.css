@@ -1,0 +1,46 @@
+#rightSideNav a:hover , #leftSideNav a:hover{
+    background-color: #673ab7
+}
+#navbarContainer {
+    display: flex;
+    align-items:center;
+    justify-content : space-between;
+    background-color : rgba(0, 0, 0, 0.5);
+}
+@media only screen and (max-width: 600px) {
+    #rightSideNav {
+        display: none
+    } 
+    #leftSideNav{
+        display : none !important
+    }
+    #navbarContainer {
+        height: 64px;
+    }
+    .fa-bars {
+        margin-left: 20px;
+        display: block !important;
+    }
+    #searchbarContainer {
+        margin : 0 auto;
+    }
+  }
+
+.fa-bars {
+    font-size: 36px;
+    color : white;
+    display: none;
+}
+#hamburgerMenu {
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 10px;
+    display: none;
+}
+.hambElem {
+    padding: 5px;
+    text-align: center;
+    color: white;
+}
+.hambElem a {
+    color: white;
+}

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import './IFCC.css';
 import axios from 'axios';
 
 const style = {
@@ -27,29 +26,37 @@ const style = {
 
 class SignUp extends Component {
   handleSignUp = () => {
+    //GETTING FORM VALUES
     const email = document.getElementById('email').value;
     const username = document.getElementById('signup_username').value;
     const password = document.getElementById('signup_password').value;
     const gender = document.getElementById('gender').value;
     if (this.validateSignUp(email, password, username)){
+      //INITIALIZING SPANS
+      document.getElementById('signed_up_span').style.display= "none";
+      document.getElementById('taken_username_span').style.display= "none";
+      document.getElementById('taken_email_span').style.display= "none";
+
+      //AXIOS REQUEST
       axios.post(`http://localhost:5000/signup`, { 
         'email' : email,
         'username' : username,
         'password' : password,
         'gender' : gender,
       }).then(res => {
-          if(res.data.message === "email"){
-            document.getElementById('taken_email_span').style.display= "block";
-            document.getElementById('taken_username_span').style.display= "none";
-          }else if (res.data.message === "username"){
-            document.getElementById('taken_username_span').style.display= "block";
-            document.getElementById('taken_email_span').style.display= "none";
-          }else if (res.data.message === "success"){
+        //this is handled in the then because the server responds with a 201
+          if (res.data.message === "success"){
             document.getElementById('signed_up_span').style.display= "block";
-            document.getElementById('taken_username_span').style.display= "none";
-            document.getElementById('taken_email_span').style.display= "none";
             window.location.reload();
           }
+      }).catch(err => {
+        //this is handled in the catch because the server responsed with a 409 status
+        let message = err.response.data.message;
+        if(message === "email"){
+          document.getElementById('taken_email_span').style.display= "block";
+        }else if (message === "username"){
+          document.getElementById('taken_username_span').style.display= "block";
+        }
       })
     }
   }

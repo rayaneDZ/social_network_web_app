@@ -10,17 +10,11 @@ router.post('/', (req, res, next) => {
     .then(user => {
         if (user.length < 1) {
             console.log('user not found')
-            return res.status(200).json({
+            return res.status(401).json({
                 message : 'wrong'
             });
         }
         bcrypt.compare(req.body.password, user[0].hashed_password, (err, result) => {
-            if(err){
-                console.log('wrong password')
-                return res.status(401).json({
-                    message: 'wrong'
-                });
-            }
             if(result){
                 const token = jwt.sign({
                     email: user[0].email,
@@ -37,11 +31,11 @@ router.post('/', (req, res, next) => {
                     token : token,
                     username: user[0].username,
                     profile_picture_path: user[0].profile_picture_path
-                });
+                })
             }
-            return res.status(200).json({
-                message : 'wrong'
-            })
+            return res.status(401).json({
+                message: 'wrong'
+            });
         })
     })
 });
