@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import '../css/postheading.css'
 
 
 const href = '#'
@@ -19,13 +20,22 @@ const style = {
         alignItems : 'flex-start',
         justifyContent : 'space-between'
     },
-    icon : {
-        marginRight : 5,
-        fontSize : 'small'
+    button : {
+        border : 'none',
+        padding : 10,
+        backgroundColor : 'transparent'
     }
 }
 
 class PostHeading extends Component {
+  toggleDropDown = () =>{
+    let dropdownval = document.getElementById('postDropDown').style.height;
+    if(dropdownval === '0px'){
+        document.getElementById('postDropDown').style.height = '124.8px';
+    }else {
+        document.getElementById('postDropDown').style.height = '0px';
+    }
+  }
   render() {
     return (
         <div className="heading" style = {style.heading}>
@@ -36,12 +46,12 @@ class PostHeading extends Component {
                     <div className="when">timestamp</div>
                 </div>
             </div>
-            <a href = {href} className="dropdown-button" data-activates="dropdown"><h4>&#x22EE;</h4></a>
-            <ul id='dropdown' className='dropdown-content'>
-                <li><a href = {href} style={style.flex}><i className="material-icons" style={style.icon}>block</i>Block User</a></li>
-                <li><a href = {href} style={style.flex}><i className="material-icons" style={style.icon}>priority_high</i>Report Post</a></li>
-                <li><a href = {href} style={style.flex}><i className="material-icons" style={style.icon}>remove</i>Hide Post</a></li>
-            </ul>
+            <button style = {style.button} onClick={this.toggleDropDown}><i className="fa fa-ellipsis-v" style={{fontSize : 26}}></i></button>
+            <div id="postDropDown">
+                <div><i className="fa fa-ban" style={{marginRight : 10}}></i>Hide</div>
+                <div><i className="fa fa-exclamation" style={{marginRight : 10}}></i>Report</div>
+                <div><i className="fa fa-check" style={{marginRight : 10}}></i>Save</div>                
+            </div>
         </div>
     )
   }

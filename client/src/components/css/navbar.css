@@ -1,11 +1,16 @@
 #rightSideNav a:hover , #leftSideNav a:hover{
-    background-color: #673ab7
+    background-color: #e9ebee;
+    
+}
+#leftSideNav a:hover > i, #rightSideNav a:hover {
+    color: #000 !important;
+    
 }
 #navbarContainer {
     display: flex;
     align-items:center;
     justify-content : space-between;
-    background-color : rgba(0, 0, 0, 0.5);
+    background-color : #673ab7;
 }
 @media only screen and (max-width: 600px) {
     #rightSideNav {
@@ -32,7 +37,7 @@
     display: none;
 }
 #hamburgerMenu {
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: #673ab7;
     padding: 10px;
     display: none;
 }

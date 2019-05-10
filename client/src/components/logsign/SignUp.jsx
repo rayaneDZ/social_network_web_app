@@ -40,7 +40,7 @@ class SignUp extends Component {
       //AXIOS REQUEST
       axios.post(`http://localhost:5000/signup`, { 
         'email' : email,
-        'username' : username,
+        'username' : username.toLowerCase(),
         'password' : password,
         'gender' : gender,
       }).then(res => {

@@ -21,11 +21,11 @@ class NavBar extends Component {
     window.location.replace('http://localhost:3000/');
   }
   toggleMenu = () => {
-    const menu = document.getElementById('hamburgerMenu');
-    if (menu.style.display === 'none') {
-      menu.style.display = 'block'
+    const menuval = document.getElementById('hamburgerMenu').style.display;
+    if (menuval === 'none') {
+      document.getElementById('hamburgerMenu').style.display = "block";
     }else {
-      menu.style.display = 'none'
+      document.getElementById('hamburgerMenu').style.display = "none";      
     }
   }
   render() {

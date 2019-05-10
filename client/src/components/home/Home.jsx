@@ -5,7 +5,7 @@ import Content from '../home/Content.jsx';
 const style = {
   homeContainer : {
     height : '100%',
-    backgroundColor : '#673ab7'
+    backgroundColor : '#e9ebee'
   }
 }
 

@@ -26,7 +26,7 @@ class LogIn extends Component {
 
         //AXIOS REQUEST
         axios.post('http://localhost:5000/login', {
-            'username' : username,
+            'username' : username.toLowerCase(),
             'password' : password
         }).then(res => {
             localStorage.setItem("token", res.data.token);

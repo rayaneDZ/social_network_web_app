@@ -11,7 +11,7 @@ const style = {
     },
     profileContainer : {
       height : '100%',
-      backgroundColor : '#673ab7'
+      backgroundColor : '#e9ebee'
     }
 }
 
