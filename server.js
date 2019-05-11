@@ -9,6 +9,7 @@ const port = process.env.PORT || 5000;
 //============ROUTES===========//
 const signupRoute = require('./routes/signup.js');
 const loginRoute = require('./routes/login.js');
+const postRoute = require('./routes/post.js');
 //============ROUTES===========//
 
 //============MIDDLEWARES===========//
@@ -16,6 +17,7 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use('/signup', signupRoute);
 app.use('/login', loginRoute);
+app.use('/post', postRoute);
 //============MIDDLEWARES===========//
 
 //========CONNECT TO DATABASE=======//

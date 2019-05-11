@@ -4,7 +4,7 @@ const postSchema = mongoose.Schema({
     _id : mongoose.Schema.Types.ObjectId,
     content : {type: String, required : true},
     image_path : String,
-    user : {type : String, ref : 'User', required : true},
+    user : {type : mongoose.Schema.Types.ObjectId, ref : 'User', required : true},
     date : {type: Date, default : Date.now},
     reacts : {
         like : {

@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 import '../css/postheading.css'
 
-
-const href = '#'
-
 const style = {
     flex : {
         display : 'flex'

@@ -36,7 +36,7 @@ class LogSign extends Component {
     return (
     <React.Fragment >
         <div style = {style.outerdiv} id ="outerdiv"></div>
-        <Animated animationIn = "slideInLeft" animationOut = "slideInRight" isVisible={true}>
+        <Animated animationIn = "slideInDown" animationOut = "slideInRight" isVisible={true}>
             <div className="card-panel card" style = {style.card} id ="logsign">
                 <div className="container">
                     <div className="row">

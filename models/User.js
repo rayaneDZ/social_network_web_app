@@ -11,6 +11,7 @@ const userSchema = mongoose.Schema({
     country : String,
     profile_picture_path : {type : String, default : ''},
     birth_date : Date,
+    posts : { type : Array, default : []},
     joining_date : {type: Date, default: Date.now},
     status : Boolean
 });

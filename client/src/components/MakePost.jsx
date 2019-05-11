@@ -11,12 +11,21 @@ const style = {
 
 class MakePost extends Component {
   handlePost = () => {
-    console.log('clicked post')
+    const content = document.getElementById('textareaContent').value;
+    const username = localStorage.getItem('username');
+    if(content.length > 0){
+      axios.post('http://localhost:5000/post', {
+        'content' : content,
+        'username' : username
+      }).then(() => {
+        document.getElementById('textareaContent').value = "";
+      })
+    }
   }
   render() {
     return (
       <div id="makepostcontainer" className="card">
-        <textarea placeholder="what's on your mind"></textarea>
+        <textarea placeholder="what's on your mind" id="textareaContent"></textarea>
         <button className="btn-flat" style = {style.btnColor} onClick={this.handlePost}>Post</button>
       </div>
     )

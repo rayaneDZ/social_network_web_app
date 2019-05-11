@@ -1,5 +1,4 @@
 const express = require('express');
-const mongoose = require('mongoose');
 const User = require('../models/User.js');
 const bcrypt = require('bcrypt');
 const router = express.Router();
@@ -18,7 +17,7 @@ router.post('/', (req, res, next) => {
             if(result){
                 const token = jwt.sign({
                     email: user[0].email,
-                    userId: user[0]._id
+                    user_id: user[0]._id
                 }, 
                 process.env.JWT_KEY,
                 {
