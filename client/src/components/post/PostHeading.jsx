@@ -26,11 +26,13 @@ const style = {
 
 class PostHeading extends Component {
   toggleDropDown = () =>{
-    let dropdownval = document.getElementById('postDropDown').style.height;
-    if(dropdownval === '0px'){
-        document.getElementById('postDropDown').style.height = '124.8px';
+    let dropdownOpacity = this.myDropDown.style.opacity;
+    if(dropdownOpacity === '0'){
+        this.myDropDown.style.visibility = "visible";
+        this.myDropDown.style.opacity = "1";
     }else {
-        document.getElementById('postDropDown').style.height = '0px';
+        this.myDropDown.style.visibility = "hidden";
+        this.myDropDown.style.opacity = "0";
     }
   }
   render() {
@@ -44,10 +46,10 @@ class PostHeading extends Component {
                 </div>
             </div>
             <button style = {style.button} onClick={this.toggleDropDown}><i className="fa fa-ellipsis-v" style={{fontSize : 26}}></i></button>
-            <div id="postDropDown">
-                <div><i className="fa fa-ban" style={{marginRight : 10}}></i>Hide</div>
-                <div><i className="fa fa-exclamation" style={{marginRight : 10}}></i>Report</div>
-                <div><i className="fa fa-check" style={{marginRight : 10}}></i>Save</div>                
+            <div id="postDropDown" ref={input => {this.myDropDown = input}}>
+                <div><i className="fa fa-ban " style={{marginRight : 10}}></i>Hide</div>
+                <div><i className="fa fa-exclamation " style={{marginRight : 10}}></i>Report</div>
+                <div><i className="fa fa-check " style={{marginRight : 10}}></i>Save</div>                
             </div>
         </div>
     )

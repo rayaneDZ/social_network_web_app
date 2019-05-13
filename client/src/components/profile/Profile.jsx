@@ -21,7 +21,7 @@ class Profile extends Component {
     return (
       <div style= {style.profileContainer}>
           <NavBar />
-          <div className="container card " style = {style.container}>
+          <div className="container" style = {style.container}>
             <ProfileHeader/>
           </div>
           <div className=" container " style = {style.container}>

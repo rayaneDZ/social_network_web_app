@@ -6,11 +6,9 @@
     z-index: 2;
     color: white;
     border-radius: 5px;
-    /* visibility: hidden;
+    visibility: hidden;
     opacity: 0;
-    transition: opacity 600ms, visibility 600ms; */
-    height: 0px;
-    transition : height 300ms;
+    transition: opacity 300ms, visibility 600ms;
 }
 #postDropDown div {
     padding: 10px;
