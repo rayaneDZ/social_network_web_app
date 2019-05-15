@@ -7,10 +7,19 @@
     
 }
 #navbarContainer {
-    display: flex;
-    align-items:center;
-    justify-content : space-between;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
     background-color : #673ab7;
+}
+#rightSideNav {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+#searchbarContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 @media only screen and (max-width: 600px) {
     #rightSideNav {
@@ -21,6 +30,10 @@
     }
     #navbarContainer {
         height: 64px;
+        display: flex;
+        align-items:center;
+        justify-content : space-between;
+        background-color : #673ab7;
     }
     .fa-bars {
         margin-left: 20px;
