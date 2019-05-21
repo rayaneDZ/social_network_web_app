@@ -13,7 +13,6 @@ const style = {
     }
 }
 
-let postsArray = [];
 
 class Content extends Component {
   constructor(props){
@@ -21,11 +20,10 @@ class Content extends Component {
     this.state = {
       loading  : true
     }
+    this.postsArray = [];
   }
   componentDidMount(){
-    axios.get('http://localhost:5000/post', {
-
-    }).then(result => {
+    axios.get('http://localhost:5000/post',).then(result => {
       console.log(result.data)
       this.setState({
         loading : false
@@ -33,9 +31,11 @@ class Content extends Component {
       return result.data.posts;
     }).then(posts => {
       posts.forEach(post => {
-        postsArray.push(<Post
+        this.postsArray.push(<Post
           key = {post._id}
+          postID = {post._id}
           user = {post.user}
+          PPP = {post.profile_picture_path}
           date = {moment(post.date).format('DD-MM-YYYY')}
           content = {post.content}
           reacts = {post.reacts}
@@ -49,7 +49,7 @@ class Content extends Component {
       <div className="container" style = {style.container} id="postsContainer">
         <MakePost/>
 
-        {this.state.loading ? <Loading/> : <div>{postsArray}</div>}
+        {this.state.loading ? <Loading/> : <div>{this.postsArray}</div>}
 
       </div>
     )

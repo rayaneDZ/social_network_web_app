@@ -35,7 +35,7 @@ class NavBar extends Component {
           <i className="fa fa-bars" onClick={this.toggleMenu}></i>  
           <div id="leftSideNav" style={style.flex}>
               <a href="/home" id="whatever"><i style={style.anchors} className="material-icons white-text">home</i></a>
-              <a href="/profile"><i style={style.anchors} className="material-icons white-text">person</i></a>
+              <a href={`/profile/${localStorage.getItem('username')}`}><i style={style.anchors} className="material-icons white-text">person</i></a>
               <a href="/messages"><i style={style.anchors} className="material-icons white-text">message</i></a>
           </div>
           <SearchBar/>

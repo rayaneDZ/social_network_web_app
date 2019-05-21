@@ -22,11 +22,10 @@ class PostComments extends Component {
     return (
         <div style={style.comment}>
             <div style={style.userdata}>
-                <h6 style={style.username}>Username</h6>
-                <h6>timestamp</h6>
+                <h6 style={style.username}>{this.props.user}</h6>
             </div>
             <p style={style.commentContent}>
-                This is a comment example
+                {this.props.content}
             </p>
         </div>
     )

@@ -10,7 +10,7 @@ function App() {
       <Router>
         <Switch>
           <Route path="/home" component={Home} />
-          <Route path="/profile" component={Profile} />
+          <Route path="/profile/:username" component={Profile} />
           <Route exact path="/" component={LogSign} />
           <Route component={NotFound}/>
         </Switch>

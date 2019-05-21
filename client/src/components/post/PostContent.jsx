@@ -3,7 +3,7 @@ import '../css/postcontent.css'
 
 const style = {
     content : {
-        paddingLeft : 50,
+        paddingLeft : 0,
         marginBottom : 15
     }
 }

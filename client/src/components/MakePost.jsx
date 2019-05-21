@@ -19,6 +19,7 @@ class MakePost extends Component {
         'username' : username
       }).then(() => {
         document.getElementById('textareaContent').value = "";
+
       })
     }
   }

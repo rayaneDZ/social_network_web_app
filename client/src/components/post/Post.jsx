@@ -3,7 +3,8 @@ import PostHeading from './PostHeading.jsx';
 import PostContent from './PostContent.jsx';
 import PostReactions from './PostReactions.jsx';
 import PostComments from './PostComments.jsx';
-import LikesAndComments from './LikesAndComments.jsx';
+import ShowComments from './ShowComments.jsx';
+import '../css/post.css'
 
 class Post extends Component {
   constructor(props){
@@ -11,6 +12,21 @@ class Post extends Component {
     this.state = {
       comments : false
     }
+    this.commentsComponentsArray = [];
+  }
+  componentDidMount(){
+    let parsedComments = []
+    const arrayOfStringComments = this.props.reacts.comment.content;
+    arrayOfStringComments.forEach(comment => {
+      parsedComments.push(JSON.parse(comment))
+    })
+    parsedComments.forEach(comment => {
+      this.commentsComponentsArray.push(<PostComments
+        user = {Object.keys(comment)}
+        content = {Object.values(comment)}
+        key = {parsedComments.indexOf(comment)}
+      />)
+    })
   }
   toggleComments = () => {
     this.setState({
@@ -19,19 +35,18 @@ class Post extends Component {
   }
   render() {
     return (
-        <div className = "card" style={{padding : 30, marginBottom: 30}}>
-            <PostHeading user = {this.props.user} date = {this.props.date}/>
+        <div className = "card" id="postContainer">
+            <PostHeading user = {this.props.user} date = {this.props.date} PPP = {this.props.PPP}/>
             <PostContent content = {this.props.content}/>
-            <LikesAndComments handler = {this.toggleComments}/>
-            <PostReactions/>
+            <ShowComments handler = {this.toggleComments}/>
+            <PostReactions postID = {this.props.postID} reacts = {this.props.reacts}/>
             {
               this.state.comments ?
               <React.Fragment>
-                <PostComments/>
-                <PostComments/>
+                {this.commentsComponentsArray}
               </React.Fragment>
               :
-                <div style = {{display : 'none'}}></div>
+                <div></div>
             }
         </div>
     )
