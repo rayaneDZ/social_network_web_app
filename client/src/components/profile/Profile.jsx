@@ -24,10 +24,7 @@ class Profile extends Component {
           <div className="container" style = {style.container}>
             <ProfileHeader/>
           </div>
-          <div className=" container " style = {style.container}>
-            <Post />
-            <Post />
-            <Post />
+          <div className=" container " style = {style.container}> 
           </div>
       </div>
     )

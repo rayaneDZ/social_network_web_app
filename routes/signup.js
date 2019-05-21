@@ -14,6 +14,8 @@ router.post('/', (req, res, next) => {
             });
         }
         checkUsername();
+    }).catch(err => {
+        console.log(err);
     })
     const checkUsername = () => {
         User.find({username : req.body.username})
@@ -54,7 +56,6 @@ router.post('/', (req, res, next) => {
             })
         })
     }
-    next();
 });
 
 module.exports = router;

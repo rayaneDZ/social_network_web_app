@@ -6,7 +6,7 @@ class ProfileHeader extends Component {
     return (
       <div id="PHContainer">
           <div id="PHProfilePicture"></div>
-          <h3>Username</h3>
+          <h3>{localStorage.getItem('username')}</h3>
           <p>BIO</p>
           <div id="followContainer">
             <div style={{display : 'flex', marginBottom : 20}}>

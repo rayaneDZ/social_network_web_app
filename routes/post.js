@@ -7,8 +7,8 @@ const router = express.Router();
 
 //POST A POST
 router.post('/', (req, res) => {
-    console.log(req.body.username);
-    console.log('post request');
+    console.log();
+    console.log(`${req.body.username} is making a post request`);
     User.find({username : req.body.username})
     .exec()
     .then(user => {

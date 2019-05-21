@@ -20,8 +20,8 @@ class Post extends Component {
   render() {
     return (
         <div className = "card" style={{padding : 30, marginBottom: 30}}>
-            <PostHeading/>
-            <PostContent/>
+            <PostHeading user = {this.props.user} date = {this.props.date}/>
+            <PostContent content = {this.props.content}/>
             <LikesAndComments handler = {this.toggleComments}/>
             <PostReactions/>
             {

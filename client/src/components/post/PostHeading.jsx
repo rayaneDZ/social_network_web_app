@@ -41,8 +41,8 @@ class PostHeading extends Component {
             <div className="metadata" style = {style.flex}>
                 <div className="profil_picture" style={style.metadata_picture}></div>
                 <div className="info">
-                    <div className="user_name" style={{fontWeight:'bold'}}>unsername</div>
-                    <div className="when">timestamp</div>
+                    <div className="user_name" style={{fontWeight:'bold'}}>{this.props.user.username}</div>
+                    <div className="when"><p style={{fontSize : 10, margin : 0}}>{this.props.date}</p></div>
                 </div>
             </div>
             <button style = {style.button} onClick={this.toggleDropDown}><i className="fa fa-ellipsis-v" style={{fontSize : 26}}></i></button>
