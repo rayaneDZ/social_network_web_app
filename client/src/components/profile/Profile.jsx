@@ -58,7 +58,6 @@ class Profile extends Component {
           reacts = {post.reacts}
         />);
       });
-      this.forceUpdate();
     })
   }
   render() {

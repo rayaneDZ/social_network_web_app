@@ -18,7 +18,6 @@ const postSchema = mongoose.Schema({
         },
         comment : {
             number : {type: Number, default : 0},
-            commented_by : {type: Array, default : []},
             content : {type: Array, default : []}
         }
     }

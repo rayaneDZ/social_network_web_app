@@ -13,7 +13,9 @@ const style = {
     },
     commentContent : {
         margin : 0,
-        marginLeft : 20
+        marginLeft : 20,
+        display : 'flex',
+        justifyContent : 'space-between'
     }
 }
 
@@ -26,6 +28,14 @@ class PostComments extends Component {
             </div>
             <p style={style.commentContent}>
                 {this.props.content}
+
+                {
+                this.props.user === localStorage.getItem('username') ? 
+                    <i className="fa fa-trash " style={{marginRight : 10}} onClick={this.deleteComment}></i>
+                : 
+                    <React.Fragment></React.Fragment>
+                }
+
             </p>
         </div>
     )

@@ -197,13 +197,16 @@ router.post('/comment', (req, res) => {
     const user = req.body.user;
     const content = req.body.content;
     const postID = req.body.postID;
-    console.log(user + 'commented : ' + content + '\n on post : ' + postID)
-    Post.updateOne({_id: postID}, {$inc : {'reacts.comment.number' : 1}, $push : {'reacts.comment.content' : `{"${user}" : "${content}"}`, 'reacts.comment.commented_by' : user} })
+    const commentID = new mongoose.Types.ObjectId();
+    console.log(user + 'commented : ' + content + '\n on post : ' + postID);
+
+    Post.updateOne({_id: postID}, {$inc : {'reacts.comment.number' : 1}, $push : {'reacts.comment.content' : {user : user, content : content, commentID : commentID}} })
     .exec()
     .then(()=>{
         console.log('commented successfully')
         return res.status(201).json({
-            message : 'comment created'
+            message : 'comment created',
+            ObjectID : commentID
         })
     }).catch(err => {
         console.log(err);

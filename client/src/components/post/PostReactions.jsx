@@ -96,11 +96,13 @@ class PostReactions extends Component {
       'user' : localStorage.getItem('username'),
       'content' : content,
       'postID' : this.props.postID
-    }).then(() => {
+    }).then((res) => {
       this.setState({
         comment : !this.state.comment,
         commentsNumber : this.state.commentsNumber + 1
       });
+      const user = localStorage.getItem('username');
+      this.props.addCommentToPost(user, content, res.ObjectID);
     })
   }
   render() {
