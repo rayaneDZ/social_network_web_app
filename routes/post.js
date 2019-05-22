@@ -212,4 +212,29 @@ router.post('/comment', (req, res) => {
         console.log(err);
     })
 })
+
+//DELETE COMMENT ON A POST
+router.post('/deleteComment', (req, res) => {
+    const postID = req.body.postID;
+    const commentID = req.body.commentID;
+    console.log(postID, commentID)
+    Post.findById({_id : postID})
+    .exec()
+    .then(result => {
+        console.log('found it')
+        let comments = result.reacts.comment.content;
+        comments.forEach(comment => {
+            if(comment.commentID == commentID){
+                console.log('found the comment')
+                comments.splice(comments.indexOf(comment), 1);
+                result.reacts.comment.number -= 1;
+                result.save();
+                res.status(201).json({
+                    message : 'comment deleted',
+                    commenID : commentID
+                })
+            }
+        })
+    })
+})
 module.exports = router;
