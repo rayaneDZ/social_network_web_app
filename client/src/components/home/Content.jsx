@@ -24,7 +24,6 @@ class Content extends Component {
   }
   componentDidMount(){
     axios.get('http://localhost:5000/post',).then(result => {
-      console.log(result.data)
       this.setState({
         loading : false
       });

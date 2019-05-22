@@ -111,33 +111,37 @@ router.post('/like', (req, res) => {
     .exec()
     .then(post => {
         if(post[0].reacts.like.liked_by.includes(user)){
-            console.log('post already liked by user');
             Post.updateOne({_id: postID}, { $inc : { 'reacts.like.number' : -1}, $pull: { 'reacts.like.liked_by': user }})
             .exec()
             .then( () => {
                 console.log('post unliked successfully');
                 return res.status(200).json({
-                    message : 'post unliked successfully'
+                    message : 'post unliked successfully',
+                    code : 1
                 })
             })
         }else{
-            console.log('post not already liked by user');
             if(post[0].reacts.dislike.disliked_by.includes(user)){
-                console.log('post already disliked by user');
                 Post.updateOne({_id: postID}, { $inc : { 'reacts.dislike.number' : -1}, $pull: { 'reacts.dislike.disliked_by': user }})
                 .exec()
+                Post.updateOne({_id: postID}, { $inc : { 'reacts.like.number' : 1}, $push: { 'reacts.like.liked_by': user }})
+                .exec()
                 .then( () => {
-                    console.log('post undisliked successfully');
+                    return res.status(200).json({
+                        message : 'post liked successfully and undisliked',
+                        code : 2
+                    })
+                })
+            }else{
+                Post.updateOne({_id: postID}, { $inc : { 'reacts.like.number' : 1}, $push: { 'reacts.like.liked_by': user }})
+                .exec()
+                .then( () => {
+                    return res.status(200).json({
+                        message : 'post liked successfully',
+                        code : 0
+                    })
                 })
             }
-            Post.updateOne({_id: postID}, { $inc : { 'reacts.like.number' : 1}, $push: { 'reacts.like.liked_by': user }})
-            .exec()
-            .then( () => {
-                console.log('post liked successfully');
-                return res.status(200).json({
-                    message : 'post liked successfully'
-                })
-            })
         }
     })
 });
@@ -153,34 +157,37 @@ router.post('/dislike', (req, res) => {
     .then(post => {
         //IF IT IS DISLIKED THEN REMOVE DISLIKE
         if(post[0].reacts.dislike.disliked_by.includes(user)){
-            console.log('post already disliked by user');
             Post.updateOne({_id: postID}, { $inc : { 'reacts.dislike.number' : -1}, $pull: { 'reacts.dislike.disliked_by': user }})
             .exec()
             .then( () => {
-                console.log('post undisliked successfully');
                 return res.status(200).json({
-                    message : 'post undisliked successfully'
+                    message : 'post undisliked successfully',
+                    code : 1
                 })
             })
         }else{
             //IF IT NOT DISLIKED THEN CHECK IF IT IS LIKED AND REMOVE THE LIKE AND RESUME
             if(post[0].reacts.like.liked_by.includes(user)){
-                console.log('post already liked by user');
                 Post.updateOne({_id: postID}, { $inc : { 'reacts.like.number' : -1}, $pull: { 'reacts.like.liked_by': user }})
                 .exec()
+                Post.updateOne({_id: postID}, { $inc : { 'reacts.dislike.number' : 1}, $push: { 'reacts.dislike.disliked_by': user }})
+                .exec()
                 .then( () => {
-                    console.log('post unliked successfully');
+                    return res.status(200).json({
+                        message : 'post disliked successfully and unliked',
+                        code : 2
+                    })
+                })
+            }else {
+                Post.updateOne({_id: postID}, { $inc : { 'reacts.dislike.number' : 1}, $push: { 'reacts.dislike.disliked_by': user }})
+                .exec()
+                .then( () => {
+                    return res.status(200).json({
+                        message : 'post disliked successfully',
+                        code : 0
+                    })
                 })
             }
-            console.log('post not already disliked by user');
-            Post.updateOne({_id: postID}, { $inc : { 'reacts.dislike.number' : 1}, $push: { 'reacts.dislike.disliked_by': user }})
-            .exec()
-            .then( () => {
-                console.log('post disliked successfully');
-                return res.status(200).json({
-                    message : 'post disliked successfully'
-                })
-            })
         }
     })
 });

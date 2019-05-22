@@ -15,6 +15,11 @@ const style = {
     profileContainer : {
       height : '100%',
       backgroundColor : '#e9ebee'
+    },
+    noPosts : {
+      margin : '50px auto',
+      width : 300,
+      textAlign : 'center'
     }
 }
 
@@ -23,7 +28,8 @@ class Profile extends Component {
   constructor(props){
     super(props);
     this.state = {
-      loading : true
+      loading : true,
+      noPosts : false
     };
     this.postsArray = []
   }
@@ -31,6 +37,11 @@ class Profile extends Component {
     axios.get(`http://localhost:5000/post/${this.props.match.params.username}`)
     .then(result => {
       console.log(result.data)
+      if(result.data.length <= 0){
+        this.setState({
+          noPosts : true
+        })
+      }
       this.setState({
         loading : false
       });
@@ -58,7 +69,12 @@ class Profile extends Component {
             <ProfileHeader/>
           </div>
           <div className=" container " style = {style.container}>
-            {this.state.loading ? <Loading /> : <div>{this.postsArray}</div>}
+            {this.state.loading ? 
+              <Loading /> 
+            : this.state.noPosts ?
+                <div style={style.noPosts}><h5>No Posts Yet</h5></div>
+              :
+              <div>{this.postsArray}</div>}
           </div>
       </div>
     )

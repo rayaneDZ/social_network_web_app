@@ -49,7 +49,12 @@ class PostHeading extends Component {
             <div id="postDropDown" ref={input => {this.myDropDown = input}}>
                 <div><i className="fa fa-ban " style={{marginRight : 10}}></i>Hide</div>
                 <div><i className="fa fa-exclamation " style={{marginRight : 10}}></i>Report</div>
-                <div><i className="fa fa-check " style={{marginRight : 10}}></i>Save</div>                
+                <div><i className="fa fa-check " style={{marginRight : 10}}></i>Save</div>
+                {this.props.user === localStorage.getItem('username') ?
+                    <div><i className="fa fa-trash " style={{marginRight : 10}}></i>Delete</div>
+                :
+                    <div></div>
+                }                
             </div>
         </div>
     )
