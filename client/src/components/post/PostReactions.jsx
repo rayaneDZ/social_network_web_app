@@ -38,7 +38,7 @@ class PostReactions extends Component {
       comment : false,
       likeNumber : this.props.reacts.like.number,
       dislikeNumber : this.props.reacts.dislike.number,
-      commentsNumber : this.props.reacts.comment.number
+      commentsNumber : this.props.numberOfComments
     }
   }
   toggleComment = () =>{
@@ -102,7 +102,7 @@ class PostReactions extends Component {
         commentsNumber : this.state.commentsNumber + 1
       });
       const user = localStorage.getItem('username');
-      this.props.addCommentToPost(user, content, res.ObjectID);
+      this.props.addCommentToPost(user, content, res.data.ObjectID);
     })
   }
   render() {
@@ -111,7 +111,7 @@ class PostReactions extends Component {
         <div style = {style.reacts_container}>
           <button className="btn-flat waves-effect waves-light" style={style.react_button} onClick={this.likePost}><i className="material-icons">thumb_up</i>{this.state.likeNumber}</button>
           <button className="btn-flat waves-effect waves-light" style={style.react_button} onClick={this.dislikePost}><i className="material-icons">thumb_down</i>{this.state.dislikeNumber}</button>
-          <button className="btn-flat waves-effect waves-light" style={style.react_button} onClick={this.toggleComment}><i className="material-icons">comment</i>{this.state.commentsNumber}</button>
+          <button className="btn-flat waves-effect waves-light" style={style.react_button} onClick={this.toggleComment}><i className="material-icons">comment</i>{this.props.numberOfComments}</button>
           <button className="btn-flat waves-effect waves-light" style={style.react_button}><i className="material-icons">share</i></button>
         </div>
         {

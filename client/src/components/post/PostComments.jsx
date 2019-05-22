@@ -1,4 +1,5 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import axios from 'axios';
 
 const style = {
     comment : {
@@ -20,9 +21,17 @@ const style = {
 }
 
 class PostComments extends Component {
+  deleteComment = () => {
+    axios.post('/post/deleteComment', {
+        'postID' : this.props.postID,
+        'commentID' : this.props.id
+    }).then(() => {
+        this.props.deleteCommentFromPost(this.props.user, this.props.content, this.props.id)
+    })
+  }
   render() {
     return (
-        <div style={style.comment}>
+        <div style={style.comment} id={this.props.id}>
             <div style={style.userdata}>
                 <h6 style={style.username}>{this.props.user}</h6>
             </div>
