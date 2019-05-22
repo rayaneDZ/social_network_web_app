@@ -18,7 +18,8 @@ class Content extends Component {
   constructor(props){
     super(props);
     this.state = {
-      loading  : true
+      loading  : true,
+      postsArray : []
     }
     this.postsArray = [];
   }
@@ -30,7 +31,7 @@ class Content extends Component {
       return result.data.posts;
     }).then(posts => {
       posts.forEach(post => {
-        this.postsArray.push(<Post
+        this.postsArray.unshift(<Post
           key = {post._id}
           postID = {post._id}
           user = {post.user}
@@ -40,15 +41,31 @@ class Content extends Component {
           reacts = {post.reacts}
         />);
       });
-      this.forceUpdate();
+      this.setState({
+        postsArray : this.postsArray
+      })
+    })
+  }
+  makePostCallback = (post) => {
+    this.postsArray.unshift(<Post
+      key = {post._id}
+      postID = {post._id}
+      user = {post.user}
+      PPP = {post.profile_picture_path}
+      date = {moment(post.date).format('DD-MM-YYYY')}
+      content = {post.content}
+      reacts = {post.reacts}
+    />);
+    this.setState({
+      postsArray : this.postsArray
     })
   }
   render() {
     return (
       <div className="container" style = {style.container} id="postsContainer">
-        <MakePost/>
+        <MakePost makePostCallback = {this.makePostCallback}/>
 
-        {this.state.loading ? <Loading/> : <div>{this.postsArray}</div>}
+        {this.state.loading ? <Loading/> : <div>{this.state.postsArray}</div>}
 
       </div>
     )

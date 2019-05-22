@@ -20,7 +20,7 @@ class Post extends Component {
   componentDidMount(){
     // now this.parsedComments = [{user : user0, content : content0, commentID : commentID0}, {user : user1, content : content1, commentID : commentID1}]
     this.parsedComments.forEach(comment => {
-      this.commentsComponentsArray.push(<PostComments
+      this.commentsComponentsArray.unshift(<PostComments
         user = {Object.values(comment)[0]}// returns user0
         content = {Object.values(comment)[1]}// returns content0
         key = {Object.values(comment)[2]} //returns commentID0
@@ -44,12 +44,12 @@ class Post extends Component {
     //this function is passed as a prop to PostReactions
     //It is  invoked when you click the submit comment button
     //in order to show the comment without hitting the database
-    this.parsedComments.push({
+    this.parsedComments.unshift({
       user : user,
       content : content,
       commentID : commentID
     })
-    this.commentsComponentsArray.push(<PostComments
+    this.commentsComponentsArray.unshift(<PostComments
       user = {user}
       content = {content}
       key = {commentID}
@@ -74,7 +74,7 @@ class Post extends Component {
     })
     this.commentsComponentsArray = [];
     this.parsedComments.forEach(comment => {
-      this.commentsComponentsArray.push(<PostComments
+      this.commentsComponentsArray.unshift(<PostComments
         user = {Object.values(comment)[0]}// returns user0
         content = {Object.values(comment)[1]}// returns content0
         key = {Object.values(comment)[2]} //returns commentID0

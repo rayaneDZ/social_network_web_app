@@ -17,9 +17,9 @@ class MakePost extends Component {
       axios.post('http://localhost:5000/post', {
         'content' : content,
         'username' : username
-      }).then(() => {
+      }).then(response => {
         document.getElementById('textareaContent').value = "";
-
+        this.props.makePostCallback(response.data)
       })
     }
   }

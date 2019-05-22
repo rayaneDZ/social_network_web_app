@@ -12,8 +12,8 @@ router.post('/', (req, res) => {
     User.find({username : req.body.username})
     .exec()
     .then(user => {
+        console.log('post request from this the user : ', user[0].username)
         //IF USER IS NULL
-        console.log(' post request from this is the user : ', user[0].username)
         if(user.length === 0){
             console.log('user not found')
             return res.status(404).json({
@@ -32,11 +32,11 @@ router.post('/', (req, res) => {
         post.save()
         .then(() => {
             //ADD AN ENTRY IN THE OWNERS POSTS ARRAY
-            User.update({username : req.body.username}, {$push : {posts : postId}})
+            User.updateOne({username : req.body.username}, {$push : {posts : postId}})
             .exec()
             .then(result => {
                 console.log(result);
-                res.status(201).json(result);
+                res.status(201).json(post);
             })
             .catch(err => {
                 console.log(err);
@@ -49,13 +49,6 @@ router.post('/', (req, res) => {
                 message : err
             })
         })
-        //SAVE THE POST TO THE DATABASE ONLYIF THE UPDATE SUCCEEDS
-        console.log('hereee', postId);
-        return postId;
-    })
-    .then(result => {
-        //RETURN THE RESULT AND LOG IT
-        console.log('hereee two :', result);
     })
     .catch(err => {
         console.log(err);
