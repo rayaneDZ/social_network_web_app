@@ -19,6 +19,7 @@ class MakePost extends Component {
         'username' : username
       }).then(response => {
         document.getElementById('textareaContent').value = "";
+        //pass the response to Content component in order to populate a new post
         this.props.addPost(response.data)
       })
     }
