@@ -29,9 +29,11 @@ class Profile extends Component {
     super(props);
     this.state = {
       loading : true,
-      noPosts : false
+      noPosts : false,
+      postsArray : []
     };
-    this.postsArray = []
+    this.postsArray = [];
+    this.parsedPosts = [];
   }
   componentDidMount(){
     axios.get(`http://localhost:5000/post/${this.props.match.params.username}`)
@@ -48,7 +50,11 @@ class Profile extends Component {
       return result.data.posts;
     }).then(posts => {
       posts.forEach(post => {
-        this.postsArray.push(<Post
+        //in order to delete posts immediatly after clicking delete
+        this.parsedPosts.unshift(post);
+
+        this.postsArray.unshift(<Post
+          deletePost = {this.deletePost}
           key = {post._id}
           postID = {post._id}
           user = {post.user}
@@ -58,6 +64,32 @@ class Profile extends Component {
           reacts = {post.reacts}
         />);
       });
+      this.setState({
+        postsArray : this.postsArray
+      })
+    })
+  }
+  deletePost = (postId) => {
+    this.parsedPosts.forEach(parsedPost => {
+      if(parsedPost._id === postId){
+        this.parsedPosts.splice(this.parsedPosts.indexOf(parsedPost), 1)
+      }
+    })
+    this.postsArray = [];
+    this.parsedPosts.forEach(post => {
+      this.postsArray.push(<Post
+        deletePost = {this.deletePost}
+        key = {post._id}
+        postID = {post._id}
+        user = {post.user}
+        PPP = {post.profile_picture_path}
+        date = {moment(post.date).format('DD-MM-YYYY')}
+        content = {post.content}
+        reacts = {post.reacts}
+      />);
+    })
+    this.setState({
+      postsArray : this.postsArray
     })
   }
   render() {

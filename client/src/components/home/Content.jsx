@@ -22,6 +22,7 @@ class Content extends Component {
       postsArray : []
     }
     this.postsArray = [];
+    this.parsedPosts = [];
   }
   componentDidMount(){
     axios.get('http://localhost:5000/post',).then(result => {
@@ -30,8 +31,13 @@ class Content extends Component {
       });
       return result.data.posts;
     }).then(posts => {
+      
       posts.forEach(post => {
+        //in order to delete posts immediatly after clicking delete
+        this.parsedPosts.unshift(post);
+
         this.postsArray.unshift(<Post
+          deletePost = {this.deletePost}
           key = {post._id}
           postID = {post._id}
           user = {post.user}
@@ -46,8 +52,36 @@ class Content extends Component {
       })
     })
   }
+  deletePost = (postId) => {
+    this.parsedPosts.forEach(parsedPost => {
+      if(parsedPost._id === postId){
+        this.parsedPosts.splice(this.parsedPosts.indexOf(parsedPost), 1)
+      }
+    })
+    this.postsArray = [];
+    this.parsedPosts.forEach(post => {
+      this.postsArray.push(<Post
+        deletePost = {this.deletePost}
+        key = {post._id}
+        postID = {post._id}
+        user = {post.user}
+        PPP = {post.profile_picture_path}
+        date = {moment(post.date).format('DD-MM-YYYY')}
+        content = {post.content}
+        reacts = {post.reacts}
+      />);
+    })
+    this.setState({
+      postsArray : this.postsArray
+    })
+  }
   makePostCallback = (post) => {
+
+    //in order to delete posts immediatly after clicking delete
+    this.parsedPosts.unshift(post);
+
     this.postsArray.unshift(<Post
+      deletePost = {this.deletePost}
       key = {post._id}
       postID = {post._id}
       user = {post.user}

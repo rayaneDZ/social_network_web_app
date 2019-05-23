@@ -63,8 +63,8 @@ class Post extends Component {
     })
 
   }
-  deleteCommentFromPost = (user, content, commentID) => {
-    //this function is passed as a prop to PostReactions
+  deleteCommentFromPost = (commentID) => {
+    //this function is passed as a prop to PostComments
     //It is  invoked when you click the submit comment button
     //in order to show the comment without hitting the database
     this.parsedComments.forEach(comment => {
@@ -91,7 +91,7 @@ class Post extends Component {
   render() {
     return (
         <div className = "card" id="postContainer">
-            <PostHeading user = {this.props.user} date = {this.props.date} PPP = {this.props.PPP} postID = {this.props.postID}/>
+            <PostHeading user = {this.props.user} date = {this.props.date} PPP = {this.props.PPP} postID = {this.props.postID} deletePost = {this.props.deletePost}/>
             <PostContent content = {this.props.content}/>
             {this.state.numberOfComments > 0 ? <ShowComments handler = {this.toggleComments}/> : <div></div>}
             <PostReactions postID = {this.props.postID} reacts = {this.props.reacts} addCommentToPost = {this.addCommentToPost} numberOfComments = {this.state.numberOfComments}/>

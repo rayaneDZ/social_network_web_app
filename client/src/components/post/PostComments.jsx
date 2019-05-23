@@ -26,7 +26,7 @@ class PostComments extends Component {
         'postID' : this.props.postID,
         'commentID' : this.props.id
     }).then(() => {
-        this.props.deleteCommentFromPost(this.props.user, this.props.content, this.props.id)
+        this.props.deleteCommentFromPost(this.props.id)
     })
   }
   render() {

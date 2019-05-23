@@ -40,8 +40,8 @@ class PostHeading extends Component {
     axios.post('/post/delete', {
         postId : this.props.postID,
         user : localStorage.getItem('username')
-    }).then(response => {
-        console.log(response.data)
+    }).then(() => {
+        this.props.deletePost(this.props.postID)
     })
   }
   render() {
