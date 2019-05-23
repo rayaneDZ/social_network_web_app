@@ -7,8 +7,6 @@ const router = express.Router();
 
 //POST A POST
 router.post('/', (req, res) => {
-    console.log();
-    console.log(`${req.body.username} is making a post request`);
     User.find({username : req.body.username})
     .exec()
     .then(user => {
@@ -58,7 +56,32 @@ router.post('/', (req, res) => {
     });
 });
 
-
+//DELETE A POST
+router.post('/delete', (req, res) => {
+    //REMOVE THE POST
+    const postId = req.body.postId;
+    const user = req.body.user;
+    Post.deleteOne({_id : postId})
+    .exec()
+    .then(()=>{
+        User.findOne({username : user})
+        .exec()
+        .then(returnedUser => {
+            const index = returnedUser.posts.indexOf(postId);
+            if(index > -1){
+                returnedUser.posts.splice(index, 1);
+                returnedUser.save();
+                res.status(202).json({
+                    message: 'entry point deleted'
+                });
+            }else{
+                res.status(404).json({
+                    message: 'post not found'
+                })
+            }
+        })
+    })
+})
 //GET ALL POSTS
 router.get('/', (req, res) => {
     Post.find()

@@ -91,7 +91,7 @@ class Post extends Component {
   render() {
     return (
         <div className = "card" id="postContainer">
-            <PostHeading user = {this.props.user} date = {this.props.date} PPP = {this.props.PPP}/>
+            <PostHeading user = {this.props.user} date = {this.props.date} PPP = {this.props.PPP} postID = {this.props.postID}/>
             <PostContent content = {this.props.content}/>
             {this.state.numberOfComments > 0 ? <ShowComments handler = {this.toggleComments}/> : <div></div>}
             <PostReactions postID = {this.props.postID} reacts = {this.props.reacts} addCommentToPost = {this.addCommentToPost} numberOfComments = {this.state.numberOfComments}/>

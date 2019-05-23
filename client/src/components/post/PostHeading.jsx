@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import '../css/postheading.css'
+import '../css/postheading.css';
+import axios from 'axios';
 
 const style = {
     flex : {
@@ -35,6 +36,14 @@ class PostHeading extends Component {
         this.myDropDown.style.opacity = "0";
     }
   }
+  deletePost = () => {
+    axios.post('/post/delete', {
+        postId : this.props.postID,
+        user : localStorage.getItem('username')
+    }).then(response => {
+        console.log(response.data)
+    })
+  }
   render() {
     return (
         <div className="heading" style = {style.heading}>
@@ -51,7 +60,7 @@ class PostHeading extends Component {
                 <div><i className="fa fa-exclamation " style={{marginRight : 10}}></i>Report</div>
                 <div><i className="fa fa-check " style={{marginRight : 10}}></i>Save</div>
                 {this.props.user === localStorage.getItem('username') ?
-                    <div><i className="fa fa-trash " style={{marginRight : 10}}></i>Delete</div>
+                    <div onClick={this.deletePost}><i className="fa fa-trash " style={{marginRight : 10}}></i>Delete</div>
                 :
                     <div></div>
                 }                

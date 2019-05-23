@@ -9,8 +9,8 @@ const style ={
     react_button : {
         borderStyle : 'none',
         width: '100%',
-        display: 'flex',
-        justifyContent : 'space-around'
+        display : 'flex',
+        justifyContent : 'center'
     },
     inputField :{
       marginBottom : 14.5
@@ -109,10 +109,10 @@ class PostReactions extends Component {
     return (
       <React.Fragment>
         <div style = {style.reacts_container}>
-          <button className="btn-flat waves-effect waves-light" style={style.react_button} onClick={this.likePost}><i className="material-icons">thumb_up</i>{this.state.likeNumber}</button>
-          <button className="btn-flat waves-effect waves-light" style={style.react_button} onClick={this.dislikePost}><i className="material-icons">thumb_down</i>{this.state.dislikeNumber}</button>
-          <button className="btn-flat waves-effect waves-light" style={style.react_button} onClick={this.toggleComment}><i className="material-icons">comment</i>{this.props.numberOfComments}</button>
-          <button className="btn-flat waves-effect waves-light" style={style.react_button}><i className="material-icons">share</i></button>
+          <button className="btn-flat waves-effect waves-light" style={style.react_button} onClick={this.likePost}><i className="material-icons" style={{marginRight : 10}}>thumb_up</i>{this.state.likeNumber}</button>
+          <button className="btn-flat waves-effect waves-light" style={style.react_button} onClick={this.dislikePost}><i className="material-icons" style={{marginRight : 10}}>thumb_down</i>{this.state.dislikeNumber}</button>
+          <button className="btn-flat waves-effect waves-light" style={style.react_button} onClick={this.toggleComment}><i className="material-icons" style={{marginRight : 10}}>comment</i>{this.props.numberOfComments}</button>
+          <button className="btn-flat waves-effect waves-light" style={style.react_button}><i className="material-icons" style={{marginRight : 10}}>share</i></button>
         </div>
         {
           this.state.comment ? 
