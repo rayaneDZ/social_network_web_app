@@ -32,10 +32,12 @@ class Content extends Component {
       return result.data.posts;
     }).then(posts => {
       
+      //for each post that we got
       posts.forEach(post => {
         //in order to delete posts immediatly after clicking delete
         this.parsedPosts.unshift(post);
 
+        //populate the components in
         this.postsArray.unshift(<Post
           deletePost = {this.deletePost}
           key = {post._id}
@@ -47,6 +49,7 @@ class Content extends Component {
           reacts = {post.reacts}
         />);
       });
+      //set the state to the populated in components aray
       this.setState({
         postsArray : this.postsArray
       })
@@ -75,7 +78,7 @@ class Content extends Component {
       postsArray : this.postsArray
     })
   }
-  makePostCallback = (post) => {
+  addPost = (post) => {
 
     //in order to delete posts immediatly after clicking delete
     this.parsedPosts.unshift(post);
@@ -97,7 +100,7 @@ class Content extends Component {
   render() {
     return (
       <div className="container" style = {style.container} id="postsContainer">
-        <MakePost makePostCallback = {this.makePostCallback}/>
+        <MakePost addPost = {this.addPost}/>
 
         {this.state.loading ? <Loading/> : <div>{this.state.postsArray}</div>}
 

@@ -19,7 +19,7 @@ class MakePost extends Component {
         'username' : username
       }).then(response => {
         document.getElementById('textareaContent').value = "";
-        this.props.makePostCallback(response.data)
+        this.props.addPost(response.data)
       })
     }
   }
