@@ -37,14 +37,14 @@ class PostReactions extends Component {
     this.state = {
       comment : false,
       likeNumber : this.props.reacts.like.number,
-      dislikeNumber : this.props.reacts.dislike.number,
-      commentsNumber : this.props.numberOfComments
+      dislikeNumber : this.props.reacts.dislike.number
     }
   }
   toggleComment = () =>{
     this.setState({
       comment : !this.state.comment
     });
+    this.props.toggleComments()
   }
   likePost = () => {
     axios.post('/post/like', {
@@ -90,7 +90,7 @@ class PostReactions extends Component {
       }
     })
   }
-  submitComment = () => {
+  addCommentToPost = () => {
     const content = document.getElementById('commentContent').value;
     axios.post('/post/comment', {
       'user' : localStorage.getItem('username'),
@@ -98,8 +98,7 @@ class PostReactions extends Component {
       'postID' : this.props.postID
     }).then((res) => {
       this.setState({
-        comment : !this.state.comment,
-        commentsNumber : this.state.commentsNumber + 1
+        comment : !this.state.comment
       });
       const user = localStorage.getItem('username');
       this.props.addCommentToPost(user, content, res.data.ObjectID);
@@ -119,7 +118,7 @@ class PostReactions extends Component {
 
             <div style={{display : 'flex', alignItems: 'center', marginTop : 10}}>
               <input type="text" placeholder="comment" style={style.commentInput} id="commentContent"/>
-              <button className="btn-flat" style = {style.btnColor} onClick={this.submitComment}>Comment</button>
+              <button className="btn-flat" style = {style.btnColor} onClick={this.addCommentToPost}>Comment</button>
             </div>
             
           : 

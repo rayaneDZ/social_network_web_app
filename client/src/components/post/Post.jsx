@@ -15,16 +15,17 @@ class Post extends Component {
       commentsComponentsArray : []
     }
     this.commentsComponentsArray = [];
-    this.parsedComments = this.props.reacts.comment.content;
   }
   componentDidMount(){
     // now this.parsedComments = [{user : user0, content : content0, commentID : commentID0}, {user : user1, content : content1, commentID : commentID1}]
-    this.parsedComments.forEach(comment => {
+    const parsedComments = this.props.reacts.comment.content;
+
+    parsedComments.forEach(comment => {
       this.commentsComponentsArray.unshift(<PostComments
-        user = {Object.values(comment)[0]}// returns user0
-        content = {Object.values(comment)[1]}// returns content0
-        key = {Object.values(comment)[2]} //returns commentID0
-        id = {Object.values(comment)[2]}
+        user = {comment.user}// returns user0
+        content = {comment.content}// returns content0
+        key = {comment.commentID} //returns commentID0
+        id = {comment.commentID}
         postID = {this.props.postID}
         deleteCommentFromPost = {this.deleteCommentFromPost} 
       />)
@@ -41,14 +42,6 @@ class Post extends Component {
     });
   }
   addCommentToPost = (user, content, commentID) => {
-    //this function is passed as a prop to PostReactions
-    //It is  invoked when you click the submit comment button
-    //in order to show the comment without hitting the database
-    this.parsedComments.unshift({
-      user : user,
-      content : content,
-      commentID : commentID
-    })
     this.commentsComponentsArray.unshift(<PostComments
       user = {user}
       content = {content}
@@ -57,6 +50,7 @@ class Post extends Component {
       postID = {this.props.postID} 
       deleteCommentFromPost = {this.deleteCommentFromPost} 
     />)
+
     this.setState({
       commentsComponentsArray : this.commentsComponentsArray,
       numberOfComments : this.state.numberOfComments + 1
@@ -67,26 +61,17 @@ class Post extends Component {
     //this function is passed as a prop to PostComments
     //It is  invoked when you click the submit comment button
     //in order to show the comment without hitting the database
-    this.parsedComments.forEach(comment => {
-      if ( comment.commentID === commentID){
-        this.parsedComments.splice(this.parsedComments.indexOf(comment), 1)
+    this.commentsComponentsArray.forEach(commentComponent => {
+      if (commentComponent.key === commentID){
+        this.commentsComponentsArray.splice(this.commentsComponentsArray.indexOf(commentComponent), 1)
       }
-    })
-    this.commentsComponentsArray = [];
-    this.parsedComments.forEach(comment => {
-      this.commentsComponentsArray.unshift(<PostComments
-        user = {Object.values(comment)[0]}// returns user0
-        content = {Object.values(comment)[1]}// returns content0
-        key = {Object.values(comment)[2]} //returns commentID0
-        id = {Object.values(comment)[2]}
-        postID = {this.props.postID}
-        deleteCommentFromPost = {this.deleteCommentFromPost} 
-      />)
     })
     this.setState({
       commentsComponentsArray : this.commentsComponentsArray,
       numberOfComments : this.state.numberOfComments - 1
     })
+    document.getElementById(commentID).style.display = 'none';
+    
   }
   render() {
     return (
@@ -94,14 +79,14 @@ class Post extends Component {
             <PostHeading user = {this.props.user} date = {this.props.date} PPP = {this.props.PPP} postID = {this.props.postID} deletePost = {this.props.deletePost}/>
             <PostContent content = {this.props.content}/>
             {this.state.numberOfComments > 0 ? <ShowComments handler = {this.toggleComments}/> : <div></div>}
-            <PostReactions postID = {this.props.postID} reacts = {this.props.reacts} addCommentToPost = {this.addCommentToPost} numberOfComments = {this.state.numberOfComments}/>
+            <PostReactions postID = {this.props.postID} reacts = {this.props.reacts} addCommentToPost = {this.addCommentToPost} numberOfComments = {this.state.numberOfComments} toggleComments = {this.toggleComments}/>
             {
               this.state.comments ?
               <React.Fragment>
                 {this.state.commentsComponentsArray}
               </React.Fragment>
               :
-                <div></div>
+                <React.Fragment></React.Fragment>
             }
         </div>
     )

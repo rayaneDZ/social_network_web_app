@@ -80,9 +80,12 @@ class Content extends Component {
     return (
       <div className="container" style = {style.container} id="postsContainer">
         <MakePost addPost = {this.addPost}/>
-
-        {this.state.loading ? <Loading/> : <div>{this.state.postsArray}</div>}
-
+        {
+        this.state.loading ?
+          <Loading/>
+        : 
+          <div>{this.state.postsArray}</div>
+        }
       </div>
     )
   }
