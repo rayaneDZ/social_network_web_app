@@ -5,6 +5,7 @@ import Post from '../post/Post.jsx';
 import axios from 'axios';
 import moment from 'moment';
 import Loading from '../Loading.jsx';
+import UserNotFound from '../UserNotFound.jsx'
 
 const style = {
     container : {
@@ -18,7 +19,7 @@ const style = {
     },
     noPosts : {
       margin : '50px auto',
-      width : 300,
+      width : 200,
       textAlign : 'center'
     }
 }
@@ -30,23 +31,39 @@ class Profile extends Component {
     this.state = {
       loading : true,
       noPosts : false,
-      postsArray : []
+      postsArray : [],
+      user : {},
+      userFound : false
     };
     this.postsArray = [];
+    this.username = this.props.match.params.username;
   }
-  componentDidMount(){
-    axios.get(`http://localhost:5000/post/${this.props.match.params.username}`)
+  componentWillMount(){
+    const asyncawaitGetRequest = async () => {
+      let response  = await axios.get(`http://localhost:5000/user/${this.username}`);
+      if (response.data.result){
+        this.setState({
+          loading : false,
+          userFound : true,
+          user : response.data.result
+        }, () => {
+          this.userFound();
+        })
+      }else {
+        this.setState({
+          loading: false,
+        })
+      }
+    }
+    asyncawaitGetRequest();
+  }
+  userFound = () =>{
+    axios.get(`http://localhost:5000/post/${this.username}`)
     .then(result => {
-      console.log(result.data)
       if(result.data.length <= 0){
         this.setState({
-          noPosts : true,
-          loading : false
+          noPosts : true
         })
-      }else{
-        this.setState({
-          loading : false
-        });
       }
       return result.data.posts;
     }).then(posts => {
@@ -81,17 +98,24 @@ class Profile extends Component {
     return (
       <div style= {style.profileContainer}>
           <NavBar />
-          <div className="container" style = {style.container}>
-            <ProfileHeader/>
-          </div>
-          <div className=" container " style = {style.container}>
-            {this.state.loading ? 
-              <Loading /> 
-            : this.state.noPosts ?
-                <div style={style.noPosts}><h5>No Posts Yet</h5></div>
-              :
-              <div>{this.postsArray}</div>}
-          </div>
+          {
+            !this.state.userFound ? 
+              <UserNotFound/> 
+            : 
+              <React.Fragment>
+                <div className="container" style = {style.container}>
+                  <ProfileHeader user = {this.state.user}/>
+                </div>
+                <div className=" container " style = {style.container}>
+                  {this.state.loading ? 
+                    <Loading /> 
+                    : this.state.noPosts ?
+                    <div style={style.noPosts}><h5>No Posts Yet</h5></div>
+                    :
+                    <div>{this.postsArray}</div>}
+                </div>
+              </React.Fragment>
+          }
       </div>
     )
   }

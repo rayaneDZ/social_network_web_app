@@ -2,12 +2,38 @@ import React, { Component } from 'react';
 import '../css/profileheader.css';
 
 class ProfileHeader extends Component {
+  state = {
+    toggleEdit : false
+  }
+  toggleEdit = () => {
+    this.setState({
+      toggleEdit : !this.state.toggleEdit
+    })
+  }
+  handleFile = () =>{
+    console.log('handle file')
+  }
   render() {
     return (
       <div id="PHContainer">
           <div id="PHProfilePicture"></div>
-          <h3>{localStorage.getItem('username')}</h3>
-          <p>BIO</p>
+          <h3>{this.props.user.username}</h3>
+          {this.props.user.username !== localStorage.getItem('username') ? <div></div> : <button id="editProfileButton" onClick = {this.toggleEdit}>Edit Profile</button>}
+          {
+            this.state.toggleEdit ?
+              <div id ="editProfileDiv">
+                <div className="editProfileSubButtons" onClick={this.handleFile}>
+                  {localStorage.getItem('profile_picture_path').length > 0 ? "Change Profile Picture" : "Add Profile Picture"}
+                </div>
+                <div className="editProfileSubButtons">
+                  Edit Bio
+                </div>
+              </div>
+            :
+              <React.Fragment></React.Fragment>
+          
+          }
+          <p>{this.props.user.bio}</p>
           <div id="followContainer">
             <div style={{display : 'flex', marginBottom : 20}}>
               <div className="followContainer">
@@ -19,7 +45,7 @@ class ProfileHeader extends Component {
                 <p>Followers</p>
               </div>
             </div>
-            <button>Follow</button>
+            {this.props.user.username === localStorage.getItem('username') ? <div></div> : <button>Follow</button>}
           </div>
       </div>
     )

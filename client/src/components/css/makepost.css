@@ -11,3 +11,12 @@ textarea:focus {
 #makepostcontainer{
     padding: 20px;
 }
+#makePostImageIcon{
+    font-size: 40px;
+    margin-left: 20px;
+    color: grey;
+}
+#makePostImageIcon:hover {
+    cursor: pointer;
+    color: black;
+}

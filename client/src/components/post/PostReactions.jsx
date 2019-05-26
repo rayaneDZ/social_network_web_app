@@ -27,7 +27,7 @@ const style ={
     },
     btnColor : {
       backgroundColor : '#673ab7',
-      color : 'white'
+      color : 'white',
   }
 }
 
@@ -108,15 +108,15 @@ class PostReactions extends Component {
     return (
       <React.Fragment>
         <div style = {style.reacts_container}>
-          <button className="btn-flat waves-effect waves-light" style={style.react_button} onClick={this.likePost}><i className="material-icons" style={{marginRight : 10}}>thumb_up</i>{this.state.likeNumber}</button>
-          <button className="btn-flat waves-effect waves-light" style={style.react_button} onClick={this.dislikePost}><i className="material-icons" style={{marginRight : 10}}>thumb_down</i>{this.state.dislikeNumber}</button>
-          <button className="btn-flat waves-effect waves-light" style={style.react_button} onClick={this.toggleComment}><i className="material-icons" style={{marginRight : 10}}>comment</i>{this.props.numberOfComments}</button>
-          <button className="btn-flat waves-effect waves-light" style={style.react_button}><i className="material-icons" style={{marginRight : 10}}>share</i></button>
+          <button className="btn-flat waves-effect waves-light" style={style.react_button} onClick={this.likePost}><i className="far fa-thumbs-up" style={{marginRight : 10}}></i>{this.state.likeNumber}</button>
+          <button className="btn-flat waves-effect waves-light" style={style.react_button} onClick={this.dislikePost}><i className="far fa-thumbs-down" style={{marginRight : 10}}></i>{this.state.dislikeNumber}</button>
+          <button className="btn-flat waves-effect waves-light" style={style.react_button} onClick={this.toggleComment}><i className="far fa-comment-alt" style={{marginRight : 10}}></i>{this.props.numberOfComments}</button>
+          <button className="btn-flat waves-effect waves-light" style={style.react_button}><i className="fas fa-share" style={{marginRight : 10}}></i></button>
         </div>
         {
           this.state.comment ? 
 
-            <div style={{display : 'flex', alignItems: 'center', marginTop : 10}}>
+            <div style={{display : 'flex', alignItems: 'center', marginTop : 10}} id="commentInput">
               <input type="text" placeholder="comment" style={style.commentInput} id="commentContent"/>
               <button className="btn-flat" style = {style.btnColor} onClick={this.addCommentToPost}>Comment</button>
             </div>

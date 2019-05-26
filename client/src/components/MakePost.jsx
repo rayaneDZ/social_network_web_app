@@ -28,7 +28,12 @@ class MakePost extends Component {
     return (
       <div id="makepostcontainer" className="card">
         <textarea placeholder="what's on your mind" id="textareaContent"></textarea>
-        <button className="btn-flat" style = {style.btnColor} onClick={this.handlePost}>Post</button>
+        <div style={{display : 'flex', alignItems : 'center'}}>
+          <button className="btn-flat" style = {style.btnColor} onClick={this.handlePost}>Post</button>
+          <form>
+          <i className="far fa-image" id="makePostImageIcon"></i>
+          </form>
+        </div>
       </div>
     )
   }

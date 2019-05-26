@@ -10,6 +10,7 @@ const port = process.env.PORT || 5000;
 const signupRoute = require('./routes/signup.js');
 const loginRoute = require('./routes/login.js');
 const postRoute = require('./routes/post.js');
+const userRoute = require('./routes/user.js')
 //============ROUTES===========//
 
 //============MIDDLEWARES===========//
@@ -18,6 +19,7 @@ app.use(bodyParser.json());
 app.use('/signup', signupRoute);
 app.use('/login', loginRoute);
 app.use('/post', postRoute);
+app.use('/user', userRoute)
 //============MIDDLEWARES===========//
 
 //========CONNECT TO DATABASE=======//
