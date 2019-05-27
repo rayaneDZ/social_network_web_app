@@ -48,7 +48,7 @@ class NavBar extends Component {
             <a href="/home"><h4>Home</h4></a>
           </div>
           <div className="hambElem">
-            <a href="/profile"><h4>Profile</h4></a>
+            <a href={`/profile/${localStorage.getItem('username')}`}><h4>Profile</h4></a>
           </div>
           <div className="hambElem">
             <a href="/messages"><h4>Messages</h4></a>

@@ -10,8 +10,8 @@ class ProfileHeader extends Component {
       toggleEdit : !this.state.toggleEdit
     })
   }
-  handleFile = () =>{
-    console.log('handle file')
+  handleFile = (e) =>{
+    console.log(e.target.files[0])
   }
   render() {
     return (
@@ -22,8 +22,9 @@ class ProfileHeader extends Component {
           {
             this.state.toggleEdit ?
               <div id ="editProfileDiv">
-                <div className="editProfileSubButtons" onClick={this.handleFile}>
-                  {localStorage.getItem('profile_picture_path').length > 0 ? "Change Profile Picture" : "Add Profile Picture"}
+                <input type="file" onChange={this.handleFile} style={{display :'none'}} ref={fi => this.fi = fi}/>
+                <div className="editProfileSubButtons" onClick={() => this.fi.click()}>
+                  {localStorage.getItem('profile_picture_path').length > 0 ? "Change Profile Picture" : "Add Profile Picture"} 
                 </div>
                 <div className="editProfileSubButtons">
                   Edit Bio

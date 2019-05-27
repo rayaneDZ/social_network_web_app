@@ -4,6 +4,7 @@ import SignUp from './SignUp.jsx';
 import {Animated} from "react-animated-css";
 import '../css/IFCC.css';
 import '../css/logsign.css';
+import jwt from 'jsonwebtoken';
 
 const style = {
     card : {
@@ -32,33 +33,50 @@ const style = {
 };
 
 class LogSign extends Component {
-  render() {
-    return (
-    <React.Fragment >
-        <div style = {style.outerdiv} id ="outerdiv"></div>
-        <Animated animationIn = "slideInDown" animationOut = "slideInRight" isVisible={true}>
-            <div className="card-panel card" style = {style.card} id ="logsign">
-                <div className="container">
-                    <div className="row">
-                        <div className="col s12" style = {style.tabs}>
-                            <ul className="tabs">
-                            <li className="tab col s6"><a href="#login" className="active">Log In</a></li>
-                            <li className="tab col s6"><a href="#signup">Sign Up</a></li>
-                            </ul>
-                        </div>
-                        <div id="login" className="col s12">
-                            <LogIn/>
-                        </div>
-                        <div id="signup" className="col s12">
-                            <SignUp/>
+    constructor(props){
+        super(props);
+        this.content = (
+            <React.Fragment >
+                <div style = {style.outerdiv} id ="outerdiv"></div>
+                <Animated animationIn = "slideInDown" animationOut = "slideInRight" isVisible={true}>
+                    <div className="card-panel card" style = {style.card} id ="logsign">
+                        <div className="container">
+                            <div className="row">
+                                <div className="col s12" style = {style.tabs}>
+                                    <ul className="tabs">
+                                    <li className="tab col s6"><a href="#login" className="active">Log In</a></li>
+                                    <li className="tab col s6"><a href="#signup">Sign Up</a></li>
+                                    </ul>
+                                </div>
+                                <div id="login" className="col s12">
+                                    <LogIn/>
+                                </div>
+                                <div id="signup" className="col s12">
+                                    <SignUp/>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
-        </Animated>
-    </React.Fragment>
-    )
-  }
+                </Animated>
+            </React.Fragment>
+        )
+    }
+    render() {
+        if(localStorage.getItem('token')){
+            try{
+                const token = localStorage.getItem('token');
+                jwt.verify(token, process.env.REACT_APP_JWT_KEY);
+                window.location.href = "/home";
+                return <React.Fragment></React.Fragment>
+            }
+            catch(err){
+                console.log(err);
+                return this.content
+            }
+        }else {
+            return this.content
+        }
+    }
 }
 
 export default LogSign;
