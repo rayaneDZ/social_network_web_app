@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import '../css/profileheader.css';
+import ImageCompressor from 'image-compressor.js';
 
 class ProfileHeader extends Component {
   state = {
@@ -11,7 +12,21 @@ class ProfileHeader extends Component {
     })
   }
   handleFile = (e) =>{
-    console.log(e.target.files[0])
+    const image = e.target.files[0]
+    console.log(image)
+    new ImageCompressor(image, {
+      quality: .6,
+      success(result) {
+        const formData = new FormData();
+  
+        formData.append('image', result, result.name);
+  
+        console.log(result)
+      },
+      error(e) {
+        console.log(e.message);
+      },
+    });
   }
   render() {
     return (
@@ -22,8 +37,8 @@ class ProfileHeader extends Component {
           {
             this.state.toggleEdit ?
               <div id ="editProfileDiv">
-                <input type="file" onChange={this.handleFile} style={{display :'none'}} ref={fi => this.fi = fi}/>
-                <div className="editProfileSubButtons" onClick={() => this.fi.click()}>
+                <input type="file" onChange={this.handleFile} style={{display :'none'}} ref={fileInput => this.fileInput = fileInput} accept="image/*"/>
+                <div className="editProfileSubButtons" onClick={() => this.fileInput.click()}>
                   {localStorage.getItem('profile_picture_path').length > 0 ? "Change Profile Picture" : "Add Profile Picture"} 
                 </div>
                 <div className="editProfileSubButtons">

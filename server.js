@@ -1,3 +1,5 @@
+require('dotenv').config() 
+
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require("cors");
@@ -5,7 +7,6 @@ const mongoose = require('mongoose');
 const app = express();
 const port = process.env.PORT || 5000;
 
-require('dotenv').config()
 
 //============ROUTES===========//
 const signupRoute = require('./routes/signup.js');
@@ -33,6 +34,5 @@ mongoose.connect('mongodb://localhost:27017/social_network', {useNewUrlParser: t
     }
 });
 //========CONNECT TO DATABASE=======//
-
 
 app.listen(port, () => console.log(`Server running on port ${port}`));

@@ -1,8 +1,6 @@
 const express = require('express');
-const mongoose = require('mongoose');
 const User = require('../models/User.js');
 const router = express.Router();
-const multer = require('multer');
 
 
 router.get('/:username', (req, res) =>{
