@@ -1,6 +1,0 @@
-{
-    "env": {
-        "JWT_KEY": "7G0Ie8ijPtIUUhYe",
-        "SALT_ROUNDS" : 10
-    }
-}
