@@ -47,6 +47,8 @@ class ProfileHeader extends Component {
     }
   }
   uploadToFirebase = (compressedImage) => {
+    let progressBar = document.getElementById('profileHeaderProgressBar');
+    progressBar.style.display = 'block'
     // Upload file and metadata to the object 'profile_pictures/"name".jpg'
     this.pp_uuid = uuidv1()
     const uploadTask = storage.ref().child('profile_pictures/' + this.pp_uuid).put(compressedImage);
@@ -55,6 +57,9 @@ class ProfileHeader extends Component {
         // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
         let progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
         console.log('Upload is ' + progress + '% done');
+        document.getElementById('determinate').style.width = progress + '%'
+
+        //DELETE this switch later because it's not used 
         switch (snapshot.state) {
           case "paused":
             console.log('Upload is paused');
@@ -66,6 +71,7 @@ class ProfileHeader extends Component {
             //default case
         }
       }, (error) =>{
+      //delete all of this code later
       // A full list of error codes is available at
       // https://firebase.google.com/docs/storage/web/handle-errors
       switch (error.code) {
@@ -87,7 +93,7 @@ class ProfileHeader extends Component {
     }, () => {
       // Upload completed successfully, now we can get the download URL
       uploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
-
+        progressBar.style.display = 'none'
         //delete old profile picture from firebase if it exists
         if(this.state.pp_uuid.length > 0){
           console.log('deleting old pp ...')
@@ -122,13 +128,15 @@ class ProfileHeader extends Component {
             :
               <div style={{height: 200, width: 200, borderRadius : "50%", backgroundColor : "grey"}}></div>
           }
-
+          <div className="progress" style={{marginTop : 20, width : 200, display : 'none', backgroundColor : '#ab7efb'}} id="profileHeaderProgressBar">
+            <div className="determinate" id="determinate" style={{width : '40%', backgroundColor : '#673ab7'}}></div>
+          </div>
           <h3>{this.props.user.username}</h3>
 
           {
             this.props.user.username !== localStorage.getItem('username') ?
-             <div></div>
-             :
+            <div></div>
+            :
               <button id="editProfileButton" onClick = {this.toggleEdit}>Edit Profile</button>
           }
 

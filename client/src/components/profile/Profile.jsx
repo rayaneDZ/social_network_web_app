@@ -6,6 +6,7 @@ import axios from 'axios';
 import moment from 'moment';
 import Loading from '../Loading.jsx';
 import UserNotFound from '../UserNotFound.jsx'
+import Footer from '../Footer.jsx';
 
 const style = {
     container : {
@@ -120,6 +121,7 @@ class Profile extends Component {
               :
                 <UserNotFound/>
           }
+          <Footer/>
       </div>
     )
   }

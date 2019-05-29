@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import NavBar from '../NavBar.jsx';
 import Content from '../home/Content.jsx';
+import Footer from '../Footer.jsx';
 
 const style = {
   homeContainer : {
@@ -15,6 +16,7 @@ class Home extends Component {
       <div style = {style.homeContainer}>
           <NavBar/>
           <Content/>
+          <Footer/>
       </div>
     )
   }
