@@ -6,6 +6,7 @@ const postSchema = mongoose.Schema({
     image_path : String,
     user : {type : String, required : true},
     profile_picture_path : {type : String, default : ''},
+    pp_uuid : {type : String, default : ''},
     date : {type: Date, default : Date.now},
     reacts : {
         like : {

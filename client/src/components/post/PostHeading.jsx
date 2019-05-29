@@ -48,7 +48,12 @@ class PostHeading extends Component {
     return (
         <div className="heading" style = {style.heading}>
             <div className="metadata" style = {style.flex}>
-                <img src={this.props.PPP} style={style.metadata_picture}/>
+                {
+                    this.props.PPP.length > 0 ?
+                        <img src={this.props.PPP} style={style.metadata_picture} alt="profile pic of the user"/>
+                    :
+                        <div style={style.metadata_picture}></div>
+                }
                 <div className="info">
                     <div className="user_name" style={{fontWeight:'bold'}}><a href = {`/profile/${this.props.user}`}>{this.props.user}</a></div>
                     <div className="when"><p style={{fontSize : 10, margin : 0}}>{this.props.date}</p></div>

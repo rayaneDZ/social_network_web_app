@@ -10,6 +10,7 @@ const userSchema = mongoose.Schema({
     city : String,
     country : String,
     profile_picture_path : {type : String, default : ''},
+    pp_uuid : {type : String, default : ''},
     birth_date : Date,
     posts : { type : Array, default : []},
     joining_date : {type: Date, default: Date.now},

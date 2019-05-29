@@ -22,15 +22,15 @@ router.get('/:username', (req, res) =>{
 
 //UPDATE USER PROFILE PICTURE
 router.post('/updateProfilePicture', (req, res) => {
-    User.findOneAndUpdate({username : req.body.username}, {profile_picture_path : req.body.ppp})
+    User.findOneAndUpdate({username : req.body.username}, {profile_picture_path : req.body.ppp, pp_uuid : req.body.pp_uuid})
     .exec()
     .then(result => {
         Post.find({user: req.body.username})
         .exec()
         .then(postsArr => {
-            console.log(postsArr)
             postsArr.forEach(post => {
                 post.profile_picture_path = req.body.ppp
+                post.pp_uuid = req.body.pp_uuid
                 post.save()
             })
             return res.status(201).json({
