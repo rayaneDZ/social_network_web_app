@@ -54,7 +54,7 @@ class NavBar extends Component {
             <a href="/messages"><h4>Messages</h4></a>
           </div>
           <div className="hambElem">
-            <a href="/"><h4>Log Out</h4></a>
+            <a href="/" onClick={this.logOut}><h4>Log Out</h4></a>
           </div>
         </div>
       </React.Fragment>

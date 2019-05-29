@@ -22,7 +22,8 @@ firebase.initializeApp(firebaseConfig);
 
 class ProfileHeader extends Component {
   state = {
-    toggleEdit : false
+    toggleEdit : false,
+    ppp : this.props.user.profile_picture_path
   }
   toggleEdit = () => {
     this.setState({
