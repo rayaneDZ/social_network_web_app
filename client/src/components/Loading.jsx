@@ -2,7 +2,7 @@ import React from 'react'
 
 const Loading = () => {
   return (
-    <div style={{display : 'flex', justifyContent : 'center', marginTop : 50}}>
+    <div style={{display : 'flex', justifyContent : 'center', alignItems : 'center', height : '100vh'}}>
         <div className="preloader-wrapper big active">
         <div className="spinner-layer spinner-blue-only">
             <div className="circle-clipper left">

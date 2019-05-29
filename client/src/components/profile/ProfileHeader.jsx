@@ -1,23 +1,9 @@
 import React, { Component } from 'react';
 import '../css/profileheader.css';
 import ImageCompressor from 'image-compressor.js';
-import  firebase from 'firebase/app';
-import 'firebase/storage';
 import axios from 'axios';
 import uuidv1 from 'uuid/v1';
-
-// Your web app's Firebase configuration
-const firebaseConfig = {
-  apiKey: process.env.REACT_APP_API_KEY,
-  authDomain: process.env.REACT_APP_AUTH_DOMAIN,
-  databaseURL: process.env.REACT_APP_DATABASE_URL,
-  projectId: process.env.REACT_APP_PROJECT_ID,
-  storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
-  messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
-  appId: process.env.REACT_APP_APP_ID
-};
-// Initialize Firebase
-firebase.initializeApp(firebaseConfig);
+import storage from '../../index.js'
 
 class ProfileHeader extends Component {
   constructor(props){
@@ -29,7 +15,7 @@ class ProfileHeader extends Component {
     }
     this.pp_uuid = ""
   }
-  //this uuid is declared so i can submit it to database along with the url of the image
+  //this.pp_uuid is declared so i can submit it to database along with the url of the image
   //(which already contains the uuid but it is hard to extract)
   //the image name in firebase is the uuid but it's link is not the uuid
   //so i have to store the uuid in order to delete it when the user updates the image
@@ -37,12 +23,10 @@ class ProfileHeader extends Component {
     this.setState({
       toggleEdit : !this.state.toggleEdit
     })
-    console.log(this.props.user)
   }
   handleFile = (e) =>{
     const image = e.target.files[0]
     const _this = this
-    console.log(image.size)
     const compressDownTo = 500000
 
     if(image.size > compressDownTo){
@@ -63,10 +47,9 @@ class ProfileHeader extends Component {
     }
   }
   uploadToFirebase = (compressedImage) => {
-    console.log(compressedImage)
     // Upload file and metadata to the object 'profile_pictures/"name".jpg'
     this.pp_uuid = uuidv1()
-    const uploadTask = firebase.storage().ref().child('profile_pictures/' + this.pp_uuid).put(compressedImage);
+    const uploadTask = storage.ref().child('profile_pictures/' + this.pp_uuid).put(compressedImage);
     // Listen for state changes, errors, and completion of the upload.
     uploadTask.on("state_changed", (snapshot) => {
         // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
@@ -106,18 +89,16 @@ class ProfileHeader extends Component {
       uploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
 
         //delete old profile picture from firebase if it exists
-        console.log(this.state.pp_uuid, this.state.pp_uuid.length)
         if(this.state.pp_uuid.length > 0){
           console.log('deleting old pp ...')
-          firebase.storage().ref().child('profile_pictures/' + this.state.pp_uuid).delete()
+          storage.ref().child('profile_pictures/' + this.state.pp_uuid).delete()
           .then(() => {
             console.log('old pp deleted successfully')
           }).catch(() => {
             console.log('old pp could not be deleted')
           })
         }
-        console.log('File available at', downloadURL);
-        console.log('this.uuid' , this.pp_uuid)
+        //API POST REQUEST TO CHANGE USER profile picture and to change posts ppp of the user
         axios.post('http://localhost:5000/user/updateProfilePicture', {
           username : this.props.user.username,
           ppp : downloadURL,
@@ -127,6 +108,7 @@ class ProfileHeader extends Component {
             ppp : downloadURL,
             pp_uuid : this.pp_uuid
           })
+          console.log('everything went successfully !')
         })
       });
     });
@@ -140,8 +122,16 @@ class ProfileHeader extends Component {
             :
               <div style={{height: 200, width: 200, borderRadius : "50%", backgroundColor : "grey"}}></div>
           }
+
           <h3>{this.props.user.username}</h3>
-          {this.props.user.username !== localStorage.getItem('username') ? <div></div> : <button id="editProfileButton" onClick = {this.toggleEdit}>Edit Profile</button>}
+
+          {
+            this.props.user.username !== localStorage.getItem('username') ?
+             <div></div>
+             :
+              <button id="editProfileButton" onClick = {this.toggleEdit}>Edit Profile</button>
+          }
+
           {
             this.state.toggleEdit ?
               <div id ="editProfileDiv">
@@ -157,6 +147,7 @@ class ProfileHeader extends Component {
               <React.Fragment></React.Fragment>
           
           }
+
           <p>{this.props.user.bio}</p>
           <div id="followContainer">
             <div style={{display : 'flex', marginBottom : 20}}>

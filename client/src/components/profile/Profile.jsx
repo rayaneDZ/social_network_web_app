@@ -33,7 +33,7 @@ class Profile extends Component {
       noPosts : false,
       postsArray : [],
       user : {},
-      userFound : false
+      userFound : true
     };
     this.postsArray = [];
     this.username = this.props.match.params.username;
@@ -43,15 +43,15 @@ class Profile extends Component {
       let response  = await axios.get(`http://localhost:5000/user/${this.username}`);
       if (response.data.result){
         this.setState({
-          loading : false,
-          userFound : true,
           user : response.data.result
         }, () => {
           this.userFound();
         })
       }else {
+        console.log('user not found')
         this.setState({
-          loading: false,
+          userFound : false,
+          loading : false
         })
       }
     }
@@ -62,7 +62,8 @@ class Profile extends Component {
     .then(result => {
       if(result.data.length <= 0){
         this.setState({
-          noPosts : true
+          noPosts : true,
+          loading : false
         })
       }
       return result.data.posts;
@@ -80,7 +81,8 @@ class Profile extends Component {
         />);
       });
       this.setState({
-        postsArray : this.postsArray
+        postsArray : this.postsArray,
+        loading : false
       })
     })
   }
@@ -99,22 +101,24 @@ class Profile extends Component {
       <div style= {style.profileContainer}>
           <NavBar />
           {
-            !this.state.userFound ? 
-              <UserNotFound/> 
-            : 
-              <React.Fragment>
-                <div className="container" style = {style.container}>
-                  <ProfileHeader user = {this.state.user}/>
-                </div>
-                <div className=" container " style = {style.container}>
-                  {this.state.loading ? 
-                    <Loading /> 
-                    : this.state.noPosts ?
-                    <div style={style.noPosts}><h5>No Posts Yet</h5></div>
-                    :
-                    <div>{this.postsArray}</div>}
-                </div>
-              </React.Fragment>
+            this.state.loading ? 
+              <Loading/> 
+            : this.state.userFound ?
+                <React.Fragment>
+                  <div className="container" style = {style.container}>
+                    <ProfileHeader user = {this.state.user}/>
+                  </div>
+                  <div className=" container " style = {style.container}>
+                    {
+                      this.state.noPosts ?
+                        <div style={style.noPosts}><h5>No Posts Yet</h5></div>
+                      :
+                        <div>{this.postsArray}</div>
+                    }
+                  </div>
+                </React.Fragment>
+              :
+                <UserNotFound/>
           }
       </div>
     )
