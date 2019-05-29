@@ -2,7 +2,7 @@ const express = require('express');
 const User = require('../models/User.js');
 const router = express.Router();
 
-
+//GET USER PROFILE
 router.get('/:username', (req, res) =>{
     User.findOne({username : req.params.username})
     .exec()
@@ -19,5 +19,19 @@ router.get('/:username', (req, res) =>{
     })
 })
 
+//UPDATE USER PROFILE PICTURE
+router.post('/updateProfilePicture', (req, res) => {
+    User.findOneAndUpdate({username : req.body.username}, {profile_picture_path : req.body.ppp})
+    .exec()
+    .then(result => {
+        return res.status(201).json({
+            result : result
+        })
+    }).catch(err => {
+        return res.status(500).json({
+            err: err
+        })
+    })
+})
 
 module.exports = router;
