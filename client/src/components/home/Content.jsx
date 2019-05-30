@@ -25,7 +25,7 @@ class Content extends Component {
     this.postsArray = [];
   }
   componentDidMount(){
-    axios.get('http://localhost:5000/post',).then(result => {
+    axios.get('/post',).then(result => {
       this.setState({
         loading : false
       });

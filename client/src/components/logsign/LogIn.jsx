@@ -25,7 +25,7 @@ class LogIn extends Component {
         document.getElementById('wrong_username_or_password_span').style.display = 'none';
 
         //AXIOS REQUEST
-        axios.post('http://localhost:5000/login', {
+        axios.post('/login', {
             'username' : username.toLowerCase(),
             'password' : password
         }).then(res => {

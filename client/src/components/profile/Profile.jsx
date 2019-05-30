@@ -42,7 +42,7 @@ class Profile extends Component {
   }
   componentWillMount(){
     const asyncawaitGetRequest = async () => {
-      let response  = await axios.get(`http://localhost:5000/user/${this.username}`);
+      let response  = await axios.get(`/user/${this.username}`);
       if (response.data.result){
         this.setState({
           user : response.data.result
@@ -60,7 +60,7 @@ class Profile extends Component {
     asyncawaitGetRequest();
   }
   userFound = () =>{
-    axios.get(`http://localhost:5000/post/${this.username}`)
+    axios.get(`/post/${this.username}`)
     .then(result => {
       if(result.data.length <= 0){
         this.setState({

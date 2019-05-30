@@ -47,7 +47,6 @@ class MakePost extends Component {
     const username = localStorage.getItem('username');
     const content = document.getElementById('textareaContent').value;
     const image = this.image
-    console.log(content.length, this.image)
     if(content.length > 0 && this.image){
       this.uploadToFirebase(image, content)
     }else if (content.length > 0 && !this.image){
@@ -77,7 +76,7 @@ class MakePost extends Component {
     });
   }
   postRequestToBackend = (username, content, image_path, image_uuid) => {
-    axios.post('http://localhost:5000/post', {
+    axios.post('/post', {
       'content' : content,
       'username' : username,
       'image_path' : image_path,

@@ -75,7 +75,7 @@ class ProfileHeader extends Component {
           })
         }
         //API POST REQUEST TO CHANGE USER profile picture and to change posts ppp of the user
-        axios.post('http://localhost:5000/user/updateProfilePicture', {
+        axios.post('/user/updateProfilePicture', {
           username : this.props.user.username,
           ppp : downloadURL,
           pp_uuid : this.pp_uuid
@@ -117,9 +117,6 @@ class ProfileHeader extends Component {
                 <div className="editProfileSubButtons" onClick={() => this.fileInput.click()}>
                   {localStorage.getItem('profile_picture_path').length > 0 ? "Change Profile Picture" : "Add Profile Picture"} 
                 </div>
-                <div className="editProfileSubButtons">
-                  Edit Bio
-                </div>
               </div>
             :
               <React.Fragment></React.Fragment>
@@ -127,19 +124,6 @@ class ProfileHeader extends Component {
           }
 
           <p>{this.props.user.bio}</p>
-          <div id="followContainer">
-            <div style={{display : 'flex', marginBottom : 20}}>
-              <div className="followContainer">
-                <p>0</p>
-                <p>Following</p>
-              </div>
-              <div className="followContainer">
-                <p>0</p>
-                <p>Followers</p>
-              </div>
-            </div>
-            {this.props.user.username === localStorage.getItem('username') ? <div></div> : <button>Follow</button>}
-          </div>
       </div>
     )
   }
