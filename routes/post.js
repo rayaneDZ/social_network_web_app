@@ -7,6 +7,7 @@ const router = express.Router();
 
 //POST A POST
 router.post('/', (req, res) => {
+    console.log(req.body)
     User.find({username : req.body.username})
     .exec()
     .then(user => {
@@ -26,6 +27,8 @@ router.post('/', (req, res) => {
             content: req.body.content,
             user: user[0].username,
             profile_picture_path : user[0].profile_picture_path,
+            image_path : req.body.image_path,
+            image_uuid : req.body.image_uuid
         });
         post.save()
         .then(() => {

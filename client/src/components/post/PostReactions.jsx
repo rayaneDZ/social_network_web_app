@@ -111,7 +111,6 @@ class PostReactions extends Component {
           <button className="btn-flat waves-effect waves-light" style={style.react_button} onClick={this.likePost}><i className="far fa-thumbs-up" style={{marginRight : 10}}></i>{this.state.likeNumber}</button>
           <button className="btn-flat waves-effect waves-light" style={style.react_button} onClick={this.dislikePost}><i className="far fa-thumbs-down" style={{marginRight : 10}}></i>{this.state.dislikeNumber}</button>
           <button className="btn-flat waves-effect waves-light" style={style.react_button} onClick={this.toggleComment}><i className="far fa-comment-alt" style={{marginRight : 10}}></i>{this.props.numberOfComments}</button>
-          <button className="btn-flat waves-effect waves-light" style={style.react_button}><i className="fas fa-share" style={{marginRight : 10}}></i></button>
         </div>
         {
           this.state.comment ? 

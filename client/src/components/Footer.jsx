@@ -2,7 +2,7 @@ import React from 'react'
 
 const style = {
     outerdiv : {
-        height : 200,
+        height : 100,
         width : '100%',
         display : 'flex',
         alignItems: 'center',
@@ -15,8 +15,8 @@ const style = {
 const Footer = () => {
     return (
         <div style={style.outerdiv}>
-            <p>Website created by</p>
-            <p>Rayane Bouthiba</p>
+            <p style={{margin : 0}}>Website created by</p>
+            <p style={{margin : 0}}>Rayane Bouthiba</p>
         </div>
     )
 }

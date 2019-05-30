@@ -2,11 +2,11 @@ const mongoose = require('mongoose');
 
 const postSchema = mongoose.Schema({
     _id : mongoose.Schema.Types.ObjectId,
-    content : {type: String, required : true},
-    image_path : String,
+    content : {type: String, default : ''},
+    image_path : {type : String, default : ''},
+    image_uuid : {type : String, default : ''},
     user : {type : String, required : true},
     profile_picture_path : {type : String, default : ''},
-    pp_uuid : {type : String, default : ''},
     date : {type: Date, default : Date.now},
     reacts : {
         like : {

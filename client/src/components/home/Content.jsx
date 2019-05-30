@@ -4,6 +4,7 @@ import MakePost from '../MakePost.jsx'
 import Loading from '../Loading.jsx';
 import axios from 'axios';
 import moment from 'moment';
+import '../css/content.css';
 
 const style = {
     container : {
@@ -40,6 +41,8 @@ class Content extends Component {
           user = {post.user}
           PPP = {post.profile_picture_path}
           date = {moment(post.date).format('DD-MM-YYYY')}
+          image_path = {post.image_path}
+          image_uuid = {post.image_uuid}
           content = {post.content}
           reacts = {post.reacts}
         />);
@@ -69,6 +72,8 @@ class Content extends Component {
       user = {post.user}
       PPP = {post.profile_picture_path}
       date = {moment(post.date).format('DD-MM-YYYY')}
+      image_path = {post.image_path}
+      image_uuid = {post.image_uuid}
       content = {post.content}
       reacts = {post.reacts}
     />);

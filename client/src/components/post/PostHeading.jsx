@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import '../css/postheading.css';
 import axios from 'axios';
+import storage from '../../index.js'
+import '../css/postheading.css';
 
 const style = {
     flex : {
@@ -42,6 +43,19 @@ class PostHeading extends Component {
         user : localStorage.getItem('username')
     }).then(() => {
         this.props.deletePost(this.props.postID)
+        //add delete to firebase
+        /////
+        /////
+        /////
+        ////
+        /////
+        console.log(this.props.image_uuid)
+        storage.ref().child('posts_pictures/' + this.props.image_uuid).delete()
+        .then(() => {
+        console.log('old pp deleted successfully')
+        }).catch(() => {
+        console.log('old pp could not be deleted')
+        })
     })
   }
   render() {

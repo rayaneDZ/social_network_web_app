@@ -7,6 +7,7 @@ import moment from 'moment';
 import Loading from '../Loading.jsx';
 import UserNotFound from '../UserNotFound.jsx'
 import Footer from '../Footer.jsx';
+import '../css/profile.css';
 
 const style = {
     container : {
@@ -77,6 +78,8 @@ class Profile extends Component {
           user = {post.user}
           PPP = {post.profile_picture_path}
           date = {moment(post.date).format('DD-MM-YYYY')}
+          image_path = {post.image_path}
+          image_uuid = {post.image_uuid}
           content = {post.content}
           reacts = {post.reacts}
         />);
@@ -109,7 +112,7 @@ class Profile extends Component {
                   <div className="container" style = {style.container}>
                     <ProfileHeader user = {this.state.user}/>
                   </div>
-                  <div className=" container " style = {style.container}>
+                  <div className=" container " style = {style.container} id="profilePostsContainer">
                     {
                       this.state.noPosts ?
                         <div style={style.noPosts}><h5>No Posts Yet</h5></div>

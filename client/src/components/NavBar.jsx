@@ -45,16 +45,16 @@ class NavBar extends Component {
         </div>
         <div id="hamburgerMenu">
           <div className="hambElem">
-            <a href="/home"><h4>Home</h4></a>
+            <a href="/home"><h6>Home</h6></a>
           </div>
           <div className="hambElem">
-            <a href={`/profile/${localStorage.getItem('username')}`}><h4>Profile</h4></a>
+            <a href={`/profile/${localStorage.getItem('username')}`}><h6>Profile</h6></a>
           </div>
           <div className="hambElem">
-            <a href="/messages"><h4>Messages</h4></a>
+            <a href="/messages"><h6>Messages</h6></a>
           </div>
           <div className="hambElem">
-            <a href="/" onClick={this.logOut}><h4>Log Out</h4></a>
+            <a href="/" onClick={this.logOut}><h6>Log Out</h6></a>
           </div>
         </div>
       </React.Fragment>
