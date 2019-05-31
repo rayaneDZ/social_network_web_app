@@ -5,7 +5,8 @@ const bodyParser = require('body-parser');
 const cors = require("cors");
 const mongoose = require('mongoose');
 const app = express();
-const port = process.env.PORT || 5000;
+const path = require('path');
+const PORT = process.env.PORT || 5000;
 
 
 //============ROUTES===========//
@@ -33,4 +34,17 @@ mongoose.connect('mongodb+srv://'+process.env.MONGODB_USERNAME+':'+process.env.M
 });
 //========CONNECT TO DATABASE=======//
 
-app.listen(port, () => console.log(`Server running on port ${port}`));
+//========Code For The Heroku Deployement=======//
+if(process.env.NODE_ENV === "production"){
+    app.use(express.static('client/build'));
+    app.get('*', (req, res) => {
+      res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+    });
+}
+//========Code For The Heroku Deployement=======//
+
+// TODO
+// ADD /API/ TO ALL AXIOS REQUEST FROM FRONT-END
+// ADD HEADERS TO ALL AXIOS REQUESTS FROM FRONT-END
+
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
