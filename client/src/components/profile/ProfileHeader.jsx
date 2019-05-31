@@ -75,7 +75,7 @@ class ProfileHeader extends Component {
           })
         }
         //API POST REQUEST TO CHANGE USER profile picture and to change posts ppp of the user
-        axios.post('/user/updateProfilePicture', {
+        axios.post('/api/user/updateProfilePicture', {
           username : this.props.user.username,
           ppp : downloadURL,
           pp_uuid : this.pp_uuid

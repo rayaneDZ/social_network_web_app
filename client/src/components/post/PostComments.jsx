@@ -22,7 +22,7 @@ const style = {
 
 class PostComments extends Component {
   deleteComment = () => {
-    axios.post('/post/deleteComment', {
+    axios.post('/api/post/deleteComment', {
         'postID' : this.props.postID,
         'commentID' : this.props.id
     }).then(() => {

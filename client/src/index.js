@@ -18,7 +18,7 @@ const firebaseConfig = {
 };
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
-console.log(process.env.REACT_APP_API_KEY)
+console.log('api key : ',process.env.REACT_APP_API_KEY)
 const storage = firebase.storage();
 export default storage
 

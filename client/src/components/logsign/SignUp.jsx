@@ -38,7 +38,7 @@ class SignUp extends Component {
       document.getElementById('taken_email_span').style.display= "none";
 
       //AXIOS REQUEST
-      axios.post('/signup', { 
+      axios.post('/api/signup', { 
         'email' : email,
         'username' : username.toLowerCase(),
         'password' : password,

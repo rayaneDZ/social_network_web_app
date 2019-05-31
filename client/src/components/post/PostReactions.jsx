@@ -54,7 +54,7 @@ class PostReactions extends Component {
     this.props.toggleComments()
   }
   likePost = () => {
-    axios.post('/post/like', {
+    axios.post('/api/post/like', {
       'postID' : this.props.postID,
       'user' : localStorage.getItem('username')
     }).then(response => {
@@ -80,7 +80,7 @@ class PostReactions extends Component {
     })
   }
   dislikePost = () => {
-    axios.post('/post/dislike', {
+    axios.post('/api/api/post/dislike', {
       'postID' : this.props.postID,
       'user' : localStorage.getItem('username')
     }).then(response => {
@@ -107,7 +107,7 @@ class PostReactions extends Component {
   }
   addCommentToPost = () => {
     const content = document.getElementById('commentContent').value;
-    axios.post('/post/comment', {
+    axios.post('/api/post/comment', {
       'user' : localStorage.getItem('username'),
       'content' : content,
       'postID' : this.props.postID

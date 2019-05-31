@@ -77,7 +77,7 @@ class MakePost extends Component {
     });
   }
   postRequestToBackend = (username, content, image_path, image_uuid) => {
-    axios.post('/post', {
+    axios.post('/api/post', {
       'content' : content,
       'username' : username,
       'image_path' : image_path,

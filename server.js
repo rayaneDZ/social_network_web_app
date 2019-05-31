@@ -19,10 +19,10 @@ const userRoute = require('./routes/user.js')
 //============MIDDLEWARES===========//
 app.use(cors());
 app.use(bodyParser.json());
-app.use('/signup', signupRoute);
-app.use('/login', loginRoute);
-app.use('/post', postRoute);
-app.use('/user', userRoute)
+app.use('/api/signup', signupRoute);
+app.use('/api/login', loginRoute);
+app.use('/api/post', postRoute);
+app.use('/api/user', userRoute);
 //============MIDDLEWARES===========//
 
 //========CONNECT TO DATABASE=======//
