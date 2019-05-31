@@ -44,6 +44,7 @@ class MakePost extends Component {
     }, false);
   }
   handlePost = () => {
+    document.getElementById('postButton').classList.add('disabled')
     const username = localStorage.getItem('username');
     const content = document.getElementById('textareaContent').value;
     const image = this.image
@@ -83,6 +84,7 @@ class MakePost extends Component {
       'image_uuid' : image_uuid
     }).then(response => {
       document.getElementById('textareaContent').value = "";
+      document.getElementById('postButton').classList.remove('disabled')
       if(document.getElementById('imagePreview')){
         document.getElementById('imagePreview').style.display = 'none';
         this.progressBar.style.display = 'none';
@@ -99,7 +101,7 @@ class MakePost extends Component {
           <textarea placeholder="what's on your mind" id="textareaContent"></textarea>
           <div id="makePostImageContainer"></div>
           <div style={{display : 'flex', alignItems : 'center'}}>
-            <button className="btn-flat" style = {style.btnColor} onClick={this.handlePost}>Post</button>
+            <button className="btn-flat" style = {style.btnColor} onClick={this.handlePost} id="postButton">Post</button>
             <input type="file" onChange={this.handleFile} style={{display :'none'}} ref={fileInput => this.fileInput = fileInput} accept="image/*"/>
             <i className="far fa-image" id="makePostImageIcon" onClick={() => this.fileInput.click()}></i>
           </div>

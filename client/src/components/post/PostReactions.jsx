@@ -123,8 +123,8 @@ class PostReactions extends Component {
     return (
       <React.Fragment>
         <div style = {style.reacts_container}>
-          <button className={"btn-flat waves-effect waves-light" + (this.state.likedByUser ? " active" : "")} style={style.react_button} onClick={this.likePost}><i className="far fa-thumbs-up" style={{marginRight : 10}}></i>{this.state.likeNumber}</button>
-          <button className={"btn-flat waves-effect waves-light" + (this.state.dislikedByUser ? " active" : "")} style={style.react_button} onClick={this.dislikePost}><i className="far fa-thumbs-down" style={{marginRight : 10}}></i>{this.state.dislikeNumber}</button>
+          <button className={"btn-flat waves-effect waves-light" + (this.state.likedByUser ? " changeColor" : "")} style={style.react_button} onClick={this.likePost}><i className="far fa-thumbs-up" style={{marginRight : 10}}></i>{this.state.likeNumber}</button>
+          <button className={"btn-flat waves-effect waves-light" + (this.state.dislikedByUser ? " changeColor" : "")} style={style.react_button} onClick={this.dislikePost}><i className="far fa-thumbs-down" style={{marginRight : 10}}></i>{this.state.dislikeNumber}</button>
           <button className="btn-flat waves-effect waves-light" style={style.react_button} onClick={this.toggleComment}><i className="far fa-comment-alt" style={{marginRight : 10}}></i>{this.props.numberOfComments}</button>
         </div>
         {

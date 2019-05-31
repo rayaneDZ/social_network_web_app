@@ -20,3 +20,6 @@ textarea:focus {
     cursor: pointer;
     color: black;
 }
+.disabled{
+    pointer-events: none;
+}

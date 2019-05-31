@@ -68,17 +68,16 @@ class PostHeading extends Component {
                     <div className="when"><p style={{fontSize : 10, margin : 0}}>{this.props.date}</p></div>
                 </div>
             </div>
-            <button style = {style.button} onClick={this.toggleDropDown}><i className="fa fa-ellipsis-v" style={{fontSize : 26}}></i></button>
-            <div id="postDropDown" ref={input => {this.myDropDown = input}}>
-                <div><i className="fa fa-ban " style={{marginRight : 10}}></i>Hide</div>
-                <div><i className="fa fa-exclamation " style={{marginRight : 10}}></i>Report</div>
-                <div><i className="fa fa-check " style={{marginRight : 10}}></i>Save</div>
                 {this.props.user === localStorage.getItem('username') ?
-                    <div onClick={this.deletePost}><i className="fa fa-trash " style={{marginRight : 10}}></i>Delete</div>
+                    <React.Fragment>
+                        <button style = {style.button} onClick={this.toggleDropDown}><i className="fa fa-ellipsis-v" style={{fontSize : 26}}></i></button>
+                        <div id="postDropDown" ref={input => {this.myDropDown = input}}>
+                            <div onClick={this.deletePost}><i className="fa fa-trash " style={{marginRight : 10}}></i>Delete</div>
+                        </div>
+                    </React.Fragment>
                 :
-                    <div></div>
+                    <React.Fragment></React.Fragment>
                 }                
-            </div>
         </div>
     )
   }

@@ -25,12 +25,10 @@ app.use('/user', userRoute)
 //============MIDDLEWARES===========//
 
 //========CONNECT TO DATABASE=======//
-mongoose.connect('mongodb://localhost:27017/social_network', {useNewUrlParser: true}, (err, db) =>{
+mongoose.connect('mongodb+srv://'+process.env.MONGODB_USERNAME+':'+process.env.MONGODB_PASSWORD+'@social-network-app-ovmhv.mongodb.net/social_network?retryWrites=true&w=majority', {useNewUrlParser: true}, (err, db) =>{
     mongoose.connection.readyState == 1 ? console.log('CONNECTED TO DB') : console.log('UNABLE TO CONNECT TO DB');
     if(err) {
-        return res.status(500).json({
-            error : 'could not connect to database'
-        })
+        console.log(err)
     }
 });
 //========CONNECT TO DATABASE=======//
