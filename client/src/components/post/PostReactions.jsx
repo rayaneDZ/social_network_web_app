@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import '../css/postreactions.css';
 
 const style ={
     reacts_container : {
@@ -39,6 +40,12 @@ class PostReactions extends Component {
       likeNumber : this.props.reacts.like.number,
       dislikeNumber : this.props.reacts.dislike.number
     }
+    if(this.props.reacts.like.liked_by.includes(localStorage.getItem('username'))){
+      this.state.likedByUser = true
+    }
+    if(this.props.reacts.dislike.disliked_by.includes(localStorage.getItem('username'))){
+      this.state.dislikedByUser = true
+    }
   }
   toggleComment = () =>{
     this.setState({
@@ -54,16 +61,20 @@ class PostReactions extends Component {
       const code = response.data.code
       if( code === 0){
         this.setState({
-          likeNumber : this.state.likeNumber + 1
+          likeNumber : this.state.likeNumber + 1,
+          likedByUser : true
         })
       }else if(code === 1){
         this.setState({
-          likeNumber : this.state.likeNumber - 1
+          likeNumber : this.state.likeNumber - 1,
+          likedByUser : false
         })
       }else if (code === 2){
         this.setState({
           likeNumber : this.state.likeNumber + 1,
-          dislikeNumber : this.state.dislikeNumber - 1
+          likedByUser : true,
+          dislikeNumber : this.state.dislikeNumber - 1,
+          dislikedByUser : false
         })
       }
     })
@@ -76,16 +87,20 @@ class PostReactions extends Component {
       const code = response.data.code;
       if(code === 0){
         this.setState({
-          dislikeNumber : this.state.dislikeNumber + 1
+          dislikeNumber : this.state.dislikeNumber + 1,
+          dislikedByUser : true
         })
       }else if(code === 1){
         this.setState({
-          dislikeNumber : this.state.dislikeNumber - 1
+          dislikeNumber : this.state.dislikeNumber - 1,
+          dislikedByUser : false
         })
       }else if(code === 2){
         this.setState({
           dislikeNumber : this.state.dislikeNumber + 1,
-          likeNumber : this.state.likeNumber - 1
+          dislikedByUser : true,
+          likeNumber : this.state.likeNumber - 1,
+          likedByUser : false
         })
       }
     })
@@ -108,8 +123,8 @@ class PostReactions extends Component {
     return (
       <React.Fragment>
         <div style = {style.reacts_container}>
-          <button className="btn-flat waves-effect waves-light" style={style.react_button} onClick={this.likePost}><i className="far fa-thumbs-up" style={{marginRight : 10}}></i>{this.state.likeNumber}</button>
-          <button className="btn-flat waves-effect waves-light" style={style.react_button} onClick={this.dislikePost}><i className="far fa-thumbs-down" style={{marginRight : 10}}></i>{this.state.dislikeNumber}</button>
+          <button className={"btn-flat waves-effect waves-light" + (this.state.likedByUser ? " active" : "")} style={style.react_button} onClick={this.likePost}><i className="far fa-thumbs-up" style={{marginRight : 10}}></i>{this.state.likeNumber}</button>
+          <button className={"btn-flat waves-effect waves-light" + (this.state.dislikedByUser ? " active" : "")} style={style.react_button} onClick={this.dislikePost}><i className="far fa-thumbs-down" style={{marginRight : 10}}></i>{this.state.dislikeNumber}</button>
           <button className="btn-flat waves-effect waves-light" style={style.react_button} onClick={this.toggleComment}><i className="far fa-comment-alt" style={{marginRight : 10}}></i>{this.props.numberOfComments}</button>
         </div>
         {
