@@ -5,6 +5,7 @@ import App from './App';
 import  firebase from 'firebase/app';
 import 'firebase/storage';
 require('dotenv').config()
+dotenv.load();
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
