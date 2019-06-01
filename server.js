@@ -26,6 +26,7 @@ app.use('/api/user', userRoute);
 //============MIDDLEWARES===========//
 
 //========CONNECT TO DATABASE=======//
+console.log(process.env.MONGODB_USERNAME, process.env.MONGODB_PASSWORD)
 mongoose.connect('mongodb+srv://'+process.env.MONGODB_USERNAME+':'+process.env.MONGODB_PASSWORD+'@social-network-app-ovmhv.mongodb.net/social_network?retryWrites=true&w=majority', {useNewUrlParser: true}, (err, db) =>{
     mongoose.connection.readyState == 1 ? console.log('CONNECTED TO DB') : console.log('UNABLE TO CONNECT TO DB');
     if(err) {
