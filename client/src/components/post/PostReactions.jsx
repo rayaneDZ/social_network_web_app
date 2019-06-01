@@ -51,7 +51,6 @@ class PostReactions extends Component {
     this.setState({
       comment : !this.state.comment
     });
-    this.props.toggleComments()
   }
   likePost = () => {
     const data = {
