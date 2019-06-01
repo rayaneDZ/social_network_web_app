@@ -87,6 +87,7 @@ router.post('/delete', check_auth, (req, res) => {
 })
 //GET ALL POSTS
 router.get('/', (req, res) => {
+    console.log('GETTING THE POSTS')
     Post.find().sort({'reacts.like.number' : 1})
     .exec()
     .then(posts => {
