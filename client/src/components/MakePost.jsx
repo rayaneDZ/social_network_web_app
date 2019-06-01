@@ -5,6 +5,8 @@ import uuidv1 from 'uuid/v1';
 import storage from '../index.js'
 import './css/makepost.css';
 
+console.log(process.env.process.env.REACT_APP_API_KEY)
+console.log(process.env)
 
 const style = {
   btnColor : {

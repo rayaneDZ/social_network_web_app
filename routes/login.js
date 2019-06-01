@@ -13,7 +13,6 @@ router.post('/', (req, res, next) => {
                 message : 'wrong'
             });
         }
-        console.log('jwt key : ', process.env.JWT_KEY)
         bcrypt.compare(req.body.password, user[0].hashed_password, (err, result) => {
             if(result){
                 const token = jwt.sign({
