@@ -9,7 +9,8 @@ const style = {
   },
   anchors : {
     padding : 20,
-    color : 'white'
+    color : 'white',
+    height : '100%'
   }
 }
 
@@ -35,7 +36,12 @@ class NavBar extends Component {
           <i className="fa fa-bars" onClick={this.toggleMenu}></i>  
           <div id="leftSideNav" style={style.flex}>
               <a href="/home" id="whatever"><i style={style.anchors} className="material-icons white-text">home</i></a>
-              <a href={`/profile/${localStorage.getItem('username')}`}><i style={style.anchors} className="material-icons white-text">person</i></a>
+              {
+                localStorage.getItem('username') ?
+                  <a href={`/profile/${localStorage.getItem('username')}`}><i style={style.anchors} className="material-icons white-text">person</i></a>
+                :
+                  <React.Fragment></React.Fragment>
+              }
               <a href="/messages"><i style={style.anchors} className="material-icons white-text">message</i></a>
           </div>
           <SearchBar/>
@@ -47,9 +53,14 @@ class NavBar extends Component {
           <div className="hambElem">
             <a href="/home"><h6>Home</h6></a>
           </div>
-          <div className="hambElem">
-            <a href={`/profile/${localStorage.getItem('username')}`}><h6>Profile</h6></a>
-          </div>
+          { 
+          localStorage.getItem('username') ?
+            <div className="hambElem">
+              <a href={`/profile/${localStorage.getItem('username')}`}><h6>Profile</h6></a>
+            </div>
+          :
+            <React.Fragment></React.Fragment>
+          }
           <div className="hambElem">
             <a href="/messages"><h6>Messages</h6></a>
           </div>

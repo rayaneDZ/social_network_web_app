@@ -38,9 +38,17 @@ class PostHeading extends Component {
     }
   }
   deletePost = () => {
-    axios.post('/api/post/delete', {
-        postId : this.props.postID,
-        user : localStorage.getItem('username')
+    const data = {
+        'postId' : this.props.postID,
+        'user' : localStorage.getItem('username')
+    }
+    axios({
+        method : 'post',
+        url : '/api/post/delete',
+        data : data,
+        headers : {
+            'Authorization': `Bearer ${localStorage.getItem('token')}`
+        }
     }).then(() => {
         this.props.deletePost(this.props.postID)
         if(this.props.image_uuid){
@@ -50,6 +58,10 @@ class PostHeading extends Component {
             }).catch(() => {
             console.log('old pp could not be deleted')
             })
+        }
+    }).catch(err => {
+        if(err.response.data.message === "Auth failed"){
+          alert('you need to LOG IN')
         }
     })
   }

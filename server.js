@@ -43,8 +43,4 @@ if(process.env.NODE_ENV === "production"){
 }
 //========Code For The Heroku Deployement=======//
 
-// TODO
-// ADD /API/ TO ALL AXIOS REQUEST FROM FRONT-END
-// ADD HEADERS TO ALL AXIOS REQUESTS FROM FRONT-END
-
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

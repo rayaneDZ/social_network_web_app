@@ -1,6 +1,7 @@
 const express = require('express');
 const User = require('../models/User.js');
 const Post = require('../models/Post.js');
+const check_auth = require('../middlewares/check_auth.js');
 const router = express.Router();
 
 //GET USER PROFILE
@@ -21,7 +22,7 @@ router.get('/:username', (req, res) =>{
 })
 
 //UPDATE USER PROFILE PICTURE
-router.post('/updateProfilePicture', (req, res) => {
+router.post('/updateProfilePicture', check_auth, (req, res) => {
     User.findOneAndUpdate({username : req.body.username}, {profile_picture_path : req.body.ppp, pp_uuid : req.body.pp_uuid})
     .exec()
     .then(result => {

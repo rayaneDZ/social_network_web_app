@@ -2,12 +2,12 @@ const express = require('express');
 const mongoose = require('mongoose');
 const User = require('../models/User.js');
 const Post = require('../models/Post.js');
+const check_auth = require('../middlewares/check_auth.js');
 const router = express.Router();
 
 
 //POST A POST
-router.post('/', (req, res) => {
-    console.log(req.body)
+router.post('/', check_auth, (req, res) => {
     User.find({username : req.body.username})
     .exec()
     .then(user => {
@@ -60,7 +60,7 @@ router.post('/', (req, res) => {
 });
 
 //DELETE A POST
-router.post('/delete', (req, res) => {
+router.post('/delete', check_auth, (req, res) => {
     //REMOVE THE POST
     const postId = req.body.postId;
     const user = req.body.user;
@@ -121,7 +121,7 @@ router.get('/:user', (req, res) => {
     });
 });
 //LIKE A POST
-router.post('/like', (req, res) => {
+router.post('/like', check_auth, (req, res) => {
     
     const user = req.body.user;
     const postID = req.body.postID;
@@ -166,7 +166,7 @@ router.post('/like', (req, res) => {
 });
 
 //DISLIKE A POST
-router.post('/dislike', (req, res) => {
+router.post('/dislike', check_auth, (req, res) => {
 
     const user = req.body.user;
     const postID = req.body.postID;
@@ -212,7 +212,7 @@ router.post('/dislike', (req, res) => {
 });
 
 //COMMENT ON A POST
-router.post('/comment', (req, res) => {
+router.post('/comment', check_auth, (req, res) => {
     const user = req.body.user;
     const content = req.body.content;
     const postID = req.body.postID;
@@ -233,7 +233,7 @@ router.post('/comment', (req, res) => {
 })
 
 //DELETE COMMENT ON A POST
-router.post('/deleteComment', (req, res) => {
+router.post('/deleteComment', check_auth, (req, res) => {
     const postID = req.body.postID;
     const commentID = req.body.commentID;
     console.log(postID, commentID)

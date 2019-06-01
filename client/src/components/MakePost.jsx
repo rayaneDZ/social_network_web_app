@@ -77,11 +77,19 @@ class MakePost extends Component {
     });
   }
   postRequestToBackend = (username, content, image_path, image_uuid) => {
-    axios.post('/api/post', {
+    const data = {
       'content' : content,
       'username' : username,
       'image_path' : image_path,
       'image_uuid' : image_uuid
+    }
+    axios({
+      method: 'post',
+      url : '/api/post',
+      data : data,
+      headers : {
+        'Authorization': `Bearer ${localStorage.getItem('token')}`
+      }
     }).then(response => {
       document.getElementById('textareaContent').value = "";
       document.getElementById('postButton').classList.remove('disabled')
@@ -92,6 +100,10 @@ class MakePost extends Component {
       this.image = null
       //pass the response to Content component in order to populate a new post
       this.props.addPost(response.data)
+    }).catch(err => {
+      if(err.response.data.message === "Auth failed"){
+        alert('you need to LOG IN')
+      }
     })
   }
   render() {

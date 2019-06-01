@@ -54,9 +54,17 @@ class PostReactions extends Component {
     this.props.toggleComments()
   }
   likePost = () => {
-    axios.post('/api/post/like', {
+    const data = {
       'postID' : this.props.postID,
       'user' : localStorage.getItem('username')
+    }
+    axios({
+      method : 'post',
+      url : '/api/post/like',
+      data : data,
+      headers : {
+        'Authorization': `Bearer ${localStorage.getItem('token')}`
+      }
     }).then(response => {
       const code = response.data.code
       if( code === 0){
@@ -77,12 +85,24 @@ class PostReactions extends Component {
           dislikedByUser : false
         })
       }
+    }).catch(err => {
+      if(err.response.data.message === "Auth failed"){
+        alert('you need to LOG IN')
+      }
     })
   }
   dislikePost = () => {
-    axios.post('/api/api/post/dislike', {
+    const data = {
       'postID' : this.props.postID,
       'user' : localStorage.getItem('username')
+    }
+    axios({
+      method : 'post',
+      url : '/api/post/dislike',
+      data : data,
+      headers : {
+        'Authorization': `Bearer ${localStorage.getItem('token')}`
+      }
     }).then(response => {
       const code = response.data.code;
       if(code === 0){
@@ -103,20 +123,36 @@ class PostReactions extends Component {
           likedByUser : false
         })
       }
+    }).catch(err => {
+      if(err.response.data.message === "Auth failed"){
+        alert('you need to LOG IN')
+      }
     })
   }
   addCommentToPost = () => {
+    const user = localStorage.getItem('username');
     const content = document.getElementById('commentContent').value;
-    axios.post('/api/post/comment', {
-      'user' : localStorage.getItem('username'),
+    const data = {
+      'user' : user,
       'content' : content,
       'postID' : this.props.postID
+    }
+    axios({
+      method : 'post',
+      url : '/api/post/comment',
+      data : data,
+      headers : {
+        'Authorization': `Bearer ${localStorage.getItem('token')}`
+      }
     }).then((res) => {
       this.setState({
         comment : !this.state.comment
       });
-      const user = localStorage.getItem('username');
       this.props.addCommentToPost(user, content, res.data.ObjectID);
+    }).catch(err => {
+      if(err.response.data.message === "Auth failed"){
+        alert('you need to LOG IN')
+      }
     })
   }
   render() {

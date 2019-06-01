@@ -1,13 +1,17 @@
-import React, { Component } from 'react'
-
-class NotFound extends Component {
-  render() {
-    return (
-      <div>
-        Not Found
-      </div>
-    )
-  }
+import React from 'react'
+const style = {
+  height : 'calc(100vh - 164px)',
+  display : 'flex',
+  alignItems : 'center',
+  justifyContent : 'center'
+}
+function NotFound() {
+  return (
+    <div style={style}>
+       <h2 style={{color: 'tomato'}}>Page doesn't exist</h2>
+    </div>
+  )
 }
 
 export default NotFound
+

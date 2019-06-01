@@ -15,7 +15,7 @@ class ProfileHeader extends Component {
     }
     this.pp_uuid = ""
   }
-  //this.pp_uuid is declared so i can submit it to database along with the url of the image
+  //this.pp_uuid is declared so i can submit it to data = base along with the url of the image
   //(which already contains the uuid but it is hard to extract)
   //the image name in firebase is the uuid but it's link is not the uuid
   //so i have to store the uuid in order to delete it when the user updates the image
@@ -49,7 +49,7 @@ class ProfileHeader extends Component {
   uploadToFirebase = (compressedImage) => {
     let progressBar = document.getElementById('profileHeaderProgressBar');
     progressBar.style.display = 'block'
-    // Upload file and metadata to the object 'profile_pictures/"name".jpg'
+    // Upload file and metadata =  to the object 'profile_pictures/"name".jpg'
     this.pp_uuid = uuidv1()
     const uploadTask = storage.ref().child('profile_pictures/' + this.pp_uuid).put(compressedImage);
     // Listen for state changes, errors, and completion of the upload.
@@ -75,17 +75,29 @@ class ProfileHeader extends Component {
           })
         }
         //API POST REQUEST TO CHANGE USER profile picture and to change posts ppp of the user
-        axios.post('/api/user/updateProfilePicture', {
+        const data = {
           username : this.props.user.username,
           ppp : downloadURL,
           pp_uuid : this.pp_uuid
+        }
+        axios({
+          method: 'post',
+          url : '/api/user/updateProfilePicture',
+          data : data,
+          headers : {
+            'Authorization': `Bearer ${localStorage.getItem('token')}`
+          }
         }).then(()=>{
           this.setState({
             ppp : downloadURL,
             pp_uuid : this.pp_uuid
           })
           console.log('everything went successfully !')
-        })
+        }).catch(err => {
+          if(err.response.data.message === "Auth failed"){
+            alert('your session timed out, please log back in')
+          }
+      })
       });
     });
   }

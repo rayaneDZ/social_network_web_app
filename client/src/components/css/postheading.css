@@ -21,7 +21,9 @@
 a {
     color: inherit
 }
-
+.fa-ellipsis-v:hover{
+    color : #673ab7
+}
 @media only screen and (max-width: 600px) {
     #postDropDown {
         position : absolute;

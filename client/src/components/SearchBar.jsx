@@ -6,7 +6,7 @@ class SearchBar extends Component {
     return (
       <div id="searchbarContainer">
       <form className="browser-default right" id="searchbarform">
-        <input id="search-input" placeholder="Search" type="text" className="browser-default search-field"  />
+        <input id="search-input" placeholder="Search for users" type="text" className="browser-default search-field"  />
       </form>
       </div>
     )
