@@ -25,7 +25,7 @@ class Content extends Component {
     this.postsArray = [];
   }
   componentDidMount(){
-    axios.get('/api/post',).then(result => {
+    axios.get('/api/post').then(result => {
       this.setState({
         loading : false
       });
