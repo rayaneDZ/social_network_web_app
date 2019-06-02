@@ -5,7 +5,7 @@ import App from './App';
 import  firebase from 'firebase/app';
 import 'firebase/storage';
 require('dotenv').config()
-
+console.log(process, process.env)
 // Your web app's Firebase configuration
 const firebaseConfig = {
     apiKey: process.env.REACT_APP_API_KEY,
