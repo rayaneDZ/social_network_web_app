@@ -83,7 +83,7 @@ in order for the environement variable to work on heroku you have to :
 
 - set them on the heroku website on the setting section and then click on Config Vars
 - in order for them to be accessed by the client side they **MUST** start with **REACT_APP_**
-- so in a nutshell, envirenment variables that start with REACT_APP_ are assigned to the front-end, and the ones that do not start with REACT_APP_ are automatically assigned to the backend
+- so in a nutshell, the front-end can only access environment variables that start with **REACT_APP_**, but the back-end (server) can access all the environment variables, whether they start with **REACT_APP_** or not
 
 ### Set up Firebase Storage
 
