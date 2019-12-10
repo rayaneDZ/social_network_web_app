@@ -13,7 +13,8 @@ const style = {
     container : {
         marginTop : 20,
         marginRight : 'auto',
-        marginLeft : 'auto'
+        marginLeft : 'auto',
+        maxWidth: 700
     },
     profileContainer : {
       height : '100%',

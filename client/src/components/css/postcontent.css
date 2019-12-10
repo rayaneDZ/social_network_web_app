@@ -3,3 +3,7 @@
         padding-left: 0px !important;
     }
   }
+.post_image_container{
+    overflow: hidden;
+    max-height: 500px;
+}

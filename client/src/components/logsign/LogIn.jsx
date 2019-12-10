@@ -40,17 +40,20 @@ class LogIn extends Component {
             }
         })
     }
+    handlePasswordChange = e => {
+        if(e.keyCode === 13)  this.handleLogIn();
+    }
     render() {
         return (
             <React.Fragment>
                     <span style={style.wrongformat} id="wrong_username_or_password_span">*Wrong username or password</span>
                     <div className="input-field">
-                        <label className="active" htmlFor="Username">Username</label>
+                        <label className="active" htmlFor="Username">username</label>
                         <input type="text" id="username"/>
                     </div>
                     <div className="input-field">
                         <label className="active" htmlFor="password">password</label>
-                        <input type="password" id="password" className="validate"/>
+                        <input type="password" id="password" className="validate" onKeyDown={e => this.handlePasswordChange(e)}/>
                     </div>
                     <button className="btn-flat" style = {style.btnColor} onClick={this.handleLogIn}>Log In</button>
             </React.Fragment>

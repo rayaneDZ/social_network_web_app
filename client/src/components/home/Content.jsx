@@ -10,7 +10,8 @@ const style = {
     container : {
         marginTop : 20,
         marginRight : 'auto',
-        marginLeft : 'auto'
+        marginLeft : 'auto',
+        maxWidth: 700
     }
 }
 
