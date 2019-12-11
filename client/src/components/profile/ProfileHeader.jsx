@@ -106,7 +106,9 @@ class ProfileHeader extends Component {
       <div id="PHContainer">
           {
             this.state.ppp.length > 0 ?
-              <img src={this.state.ppp} id="PHProfilePicture" alt="profile pic of the user"/>
+              <div className="PHPPcontainer">
+                <img src={this.state.ppp} id="PHProfilePicture" alt="profile pic of the user"/>
+              </div>
             :
               <div style={{height: 200, width: 200, borderRadius : "50%", backgroundColor : "grey"}}></div>
           }

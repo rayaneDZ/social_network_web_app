@@ -3,10 +3,16 @@
     flex-direction: column;
     align-items: center;
 }
-#PHProfilePicture {
-    height: 200px;
+.PHPPcontainer{
     width: 200px;
+    height: 200px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
     border-radius: 50%;
+}
+#PHProfilePicture {
+    width: 200px;
     background-color: grey;
 }
 .followContainer{

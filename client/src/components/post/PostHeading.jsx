@@ -8,10 +8,16 @@ const style = {
         display : 'flex'
     },
     metadata_picture : {
-        height : 50,
         width : 50,
-        borderRadius : '50%',
-        backgroundColor : 'grey',
+        backgroundColor : 'grey'
+    },
+    metadata_picture_container : {
+        width: 50,
+        height: 50,
+        display: 'flex',
+        alignItems: 'center',
+        overflow: 'hidden',
+        borderRadius: '50%',
         marginRight : 20
     },
     heading : {
@@ -71,7 +77,9 @@ class PostHeading extends Component {
             <div className="metadata" style = {style.flex}>
                 {
                     this.props.PPP.length > 0 ?
-                        <img src={this.props.PPP} style={style.metadata_picture} alt="profile pic of the user"/>
+                        <div style = {style.metadata_picture_container}>
+                            <img src={this.props.PPP} style={style.metadata_picture} alt="profile pic of the user"/>
+                        </div>
                     :
                         <div style={style.metadata_picture}></div>
                 }
