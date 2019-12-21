@@ -45,4 +45,16 @@ router.post('/updateProfilePicture', check_auth, (req, res) => {
     })
 })
 
+router.get('/search/:match', (req, res) =>{
+    var matchRegEx = new RegExp('^' + req.params.match, 'i');
+    console.log(matchRegEx, req.params.match);
+    User.find({username: matchRegEx})
+    .then(result => {
+        res.status(200).json(result);
+    })
+    .catch(err => {
+        console.log(err);
+        res.status(500).json(err);
+    });
+})
 module.exports = router;
